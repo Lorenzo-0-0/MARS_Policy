@@ -154,16 +154,18 @@ body > * { position: relative; z-index: 1; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(15,15,17,0.10) 0%, rgba(15,15,17,0.10) 60%, var(--bg) 100%);
+  background: linear-gradient(to bottom,
+    rgba(15,15,17,0.08) 0%,
+    rgba(15,15,17,0.08) 70%,
+    rgba(15,15,17,0.45) 100%);
 }
 
-/* Hero media — 2×4 grid of 8 multimodal MARS clips */
+/* Hero media — seamless 2×4 grid of 8 multimodal MARS clips */
 .hero__media--grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--bg);
+  gap: 0;
 }
 
 .hero__media--grid > video {
