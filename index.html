@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
 
@@ -344,22 +344,43 @@
     <p class="chapter-num" data-reveal>§ 05 — Real-World</p>
     <h2 class="section-title" data-reveal>Four manipulation tasks. Two robots. One policy class.</h2>
     <p class="section-lead" data-reveal>
-      On Franka and Galaxea R1 Lite we compare MARS against a flow-matching
-      baseline (FM) and a deterministic action-to-action regressor (A2A).
-      Every video below plays at 2× — hover for full controls or scrub to
-      inspect frame-by-frame.
+      Each task admits <strong>two valid solutions</strong>. Toggle between
+      modes to see how a single trained MARS policy samples a different —
+      yet equally valid — behaviour each rollout. Hover any video for
+      controls or scrub to inspect frame-by-frame.
     </p>
 
-    <!-- PUSH-T (single-method cycle) -->
-    <article class="task-card" data-reveal>
+    <!-- PUSH-T — Mode A (upper path) vs Mode B (lower path) -->
+    <article class="task-card task-card--mode-toggle" id="task-pusht" data-reveal>
+      <header class="task-card__title">
+        <h3>Push-T</h3>
+        <span class="kicker">Franka · MARS</span>
+      </header>
+      <p class="task-card__desc">
+        From a fixed start pose, the T-shaped block can be aligned by going
+        <em>around</em> it from either side. MARS samples a different path
+        on each rollout while still landing the T inside the target.
+      </p>
+
+      <div class="mode-tabs" role="tablist" data-task="pusht">
+        <button class="mode-tab is-active" role="tab" data-mode="A" type="button">
+          <span class="mode-tab__label">Mode A</span>
+          <span class="mode-tab__title">Upper path</span>
+        </button>
+        <button class="mode-tab" role="tab" data-mode="B" type="button">
+          <span class="mode-tab__label">Mode B</span>
+          <span class="mode-tab__title">Lower path</span>
+        </button>
+      </div>
+
       <figure class="media-block">
         <div class="media-block__chrome">
-          <div class="vp" data-vp data-default-rate="2">
-            <video class="vp__video js-cycle"
-                   autoplay muted playsinline preload="metadata"
+          <div class="vp" data-vp data-default-rate="2"
+               data-task-modes='{"A":{"src":"assets/videos/pusht/clip1.mp4","poster":"assets/posters/pusht.jpg","caption":"Mode A — the arm sweeps over the upper edge of the T before nudging it into the target. Same policy, same start pose: only w differs from the rollout below."},"B":{"src":"assets/videos/pusht/clip2.mp4","poster":"assets/posters/pusht.jpg","caption":"Mode B — the arm approaches from the lower side and rotates the T in. Both end states satisfy the target footprint; both are valid expert behaviours."}}'>
+            <video class="vp__video"
+                   autoplay muted loop playsinline preload="metadata"
                    poster="assets/posters/pusht.jpg"
-                   src="assets/videos/pusht/clip1.mp4"
-                   data-clips='["assets/videos/pusht/clip1.mp4","assets/videos/pusht/clip2.mp4","assets/videos/pusht/clip3.mp4"]'></video>
+                   src="assets/videos/pusht/clip1.mp4"></video>
             <div class="vp__overlay">
               <button class="vp__playpause" aria-label="Play/Pause" type="button"></button>
             </div>
@@ -377,27 +398,47 @@
         <div class="media-block__meta">
           <span class="media-block__label">FIG. 03 · Push-T · Franka</span>
           <span class="media-block__rule"></span>
-          <h4 class="media-block__title">Pushing a T-shaped block into a target footprint.</h4>
-          <p class="media-block__caption">
-            Three independent MARS rollouts cycle automatically: <em>0:30</em>,
-            <em>3:20</em>, <em>6:40</em> of an 8-minute evaluation. The end pose differs
-            slightly each run while the final T alignment is preserved —
-            characteristic of a modal-adaptive policy at low <strong>w</strong>.
+          <h4 class="media-block__title">Two valid paths around a T-shaped block.</h4>
+          <p class="media-block__caption" data-mode-caption>
+            Mode A — the arm sweeps over the upper edge of the T before
+            nudging it into the target. Same policy, same start pose: only
+            <em>w</em> differs from the rollout below.
           </p>
         </div>
       </figure>
     </article>
 
-    <!-- BLOCK PUSH (single-method, 3 directional cycle) -->
-    <article class="task-card" data-reveal>
+    <!-- BLOCK PUSH — Mode A (upward goal) vs Mode B (downward goal) -->
+    <article class="task-card task-card--mode-toggle" id="task-pushcube" data-reveal>
+      <header class="task-card__title">
+        <h3>Block Push</h3>
+        <span class="kicker">Franka · MARS</span>
+      </header>
+      <p class="task-card__desc">
+        From an identical initial cube pose, two distinct goal regions are
+        equally valid. The dataset is roughly balanced; only a policy that
+        <em>preserves</em> modal balance can land in each.
+      </p>
+
+      <div class="mode-tabs" role="tablist" data-task="pushcube">
+        <button class="mode-tab is-active" role="tab" data-mode="A" type="button">
+          <span class="mode-tab__label">Mode A</span>
+          <span class="mode-tab__title">Upward goal</span>
+        </button>
+        <button class="mode-tab" role="tab" data-mode="B" type="button">
+          <span class="mode-tab__label">Mode B</span>
+          <span class="mode-tab__title">Downward goal</span>
+        </button>
+      </div>
+
       <figure class="media-block">
         <div class="media-block__chrome">
-          <div class="vp" data-vp data-default-rate="2">
-            <video class="vp__video js-cycle"
-                   autoplay muted playsinline preload="metadata"
+          <div class="vp" data-vp data-default-rate="2"
+               data-task-modes='{"A":{"src":"assets/videos/pushcube/up.mp4","caption":"Mode A — the cube is pushed toward the upper target. Identical start state to Mode B; the scheduling network selects a different w on this rollout."},"B":{"src":"assets/videos/pushcube/down1.mp4","caption":"Mode B — the cube is pushed toward the downward target instead. A2A averages these two solutions into a straight line that misses both regions; MARS picks one."}}'>
+            <video class="vp__video"
+                   autoplay muted loop playsinline preload="metadata"
                    poster="assets/posters/pushcube.jpg"
-                   src="assets/videos/pushcube/up.mp4"
-                   data-clips='["assets/videos/pushcube/up.mp4","assets/videos/pushcube/down1.mp4","assets/videos/pushcube/down2.mp4"]'></video>
+                   src="assets/videos/pushcube/up.mp4"></video>
             <div class="vp__overlay">
               <button class="vp__playpause" aria-label="Play/Pause" type="button"></button>
             </div>
@@ -415,170 +456,122 @@
         <div class="media-block__meta">
           <span class="media-block__label">FIG. 04 · Block Push · Franka</span>
           <span class="media-block__rule"></span>
-          <h4 class="media-block__title">Three valid goals from a single trained policy.</h4>
-          <p class="media-block__caption">
-            One model, three direction modes (one upward, two downward).
-            MARS samples a different goal each rollout while baselines either
-            collapse to a single goal (A2A) or oscillate at the boundary (FM).
+          <h4 class="media-block__title">Two valid goal regions from one trained policy.</h4>
+          <p class="media-block__caption" data-mode-caption>
+            Mode A — the cube is pushed toward the upper target. Identical
+            start state to Mode B; the scheduling network selects a
+            different <em>w</em> on this rollout.
           </p>
         </div>
       </figure>
     </article>
 
-    <!-- PICK CUP — 3-COLUMN METHOD COMPARISON -->
-    <article class="task-card" data-reveal>
-      <div class="task-card__title">
+    <!-- PICK CUP — Mode A (handle grasp) vs Mode B (rim grasp) -->
+    <article class="task-card task-card--mode-toggle" id="task-pickcup" data-reveal>
+      <header class="task-card__title">
         <h3>Pick Cup</h3>
-        <span class="kicker">Galaxea R1 Lite</span>
-      </div>
+        <span class="kicker">Galaxea R1 Lite · MARS</span>
+      </header>
       <p class="task-card__desc">
-        Two equally valid grasp poses: handle or rim. The dataset contains
-        both at roughly 50/50 — only a policy that <em>preserves</em>
-        multimodality reaches each pose successfully.
+        A coffee mug exposes two equally valid grasps — by the handle or
+        by the rim. The dataset contains both at roughly 50/50 and a
+        deterministic regressor averages them into an in-between pose that
+        catches nothing. MARS samples each grasp in turn.
       </p>
 
-      <div class="method-grid">
-        <div class="method-col">
-          <div class="method-col__chrome">
-            <div class="vp" data-vp data-default-rate="2">
-              <video class="vp__video" autoplay muted loop playsinline preload="metadata"
-                     poster="assets/posters/pickcup_mars.jpg"
-                     src="assets/videos/pickcup/mars.mp4"></video>
-              <div class="vp__overlay"><button class="vp__playpause" aria-label="Play/Pause" type="button"></button></div>
-              <div class="vp__controls">
-                <button class="vp__pp-mini" aria-label="Play/Pause" type="button"></button>
-                <div class="vp__scrub" role="slider" tabindex="0" aria-label="Scrub" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="vp__scrub-fill"></div><div class="vp__scrub-thumb"></div>
-                </div>
-                <span class="vp__time">0:00 / 0:00</span>
-                <button class="vp__speed" data-speeds="1,2,4" aria-label="Speed" type="button">2×</button>
-              </div>
-            </div>
-          </div>
-          <div class="method-col__name" data-method="MARS"><span class="badge">MARS</span>Ours</div>
-          <p class="method-col__verdict">Reaches both grasp poses across rollouts.</p>
-        </div>
-
-        <div class="method-col">
-          <div class="method-col__chrome">
-            <div class="vp" data-vp data-default-rate="2">
-              <video class="vp__video" autoplay muted loop playsinline preload="metadata"
-                     poster="assets/posters/pickcup_fm.jpg"
-                     src="assets/videos/pickcup/fm.mp4"></video>
-              <div class="vp__overlay"><button class="vp__playpause" aria-label="Play/Pause" type="button"></button></div>
-              <div class="vp__controls">
-                <button class="vp__pp-mini" aria-label="Play/Pause" type="button"></button>
-                <div class="vp__scrub" role="slider" tabindex="0" aria-label="Scrub" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="vp__scrub-fill"></div><div class="vp__scrub-thumb"></div>
-                </div>
-                <span class="vp__time">0:00 / 0:00</span>
-                <button class="vp__speed" data-speeds="1,2,4" aria-label="Speed" type="button">2×</button>
-              </div>
-            </div>
-          </div>
-          <div class="method-col__name" data-method="FM"><span class="badge">FM</span>Flow Matching</div>
-          <p class="method-col__verdict">Diverse but slow; latency dominated by denoising loop.</p>
-        </div>
-
-        <div class="method-col">
-          <div class="method-col__chrome">
-            <div class="vp" data-vp data-default-rate="2">
-              <video class="vp__video" autoplay muted loop playsinline preload="metadata"
-                     poster="assets/posters/pickcup_a2a.jpg"
-                     src="assets/videos/pickcup/a2a.mp4"></video>
-              <div class="vp__overlay"><button class="vp__playpause" aria-label="Play/Pause" type="button"></button></div>
-              <div class="vp__controls">
-                <button class="vp__pp-mini" aria-label="Play/Pause" type="button"></button>
-                <div class="vp__scrub" role="slider" tabindex="0" aria-label="Scrub" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="vp__scrub-fill"></div><div class="vp__scrub-thumb"></div>
-                </div>
-                <span class="vp__time">0:00 / 0:00</span>
-                <button class="vp__speed" data-speeds="1,2,4" aria-label="Speed" type="button">2×</button>
-              </div>
-            </div>
-          </div>
-          <div class="method-col__name" data-method="A2A"><span class="badge">A2A</span>Action-to-Action</div>
-          <p class="method-col__verdict">Averages both modes into an in-between grasp that misses the cup.</p>
-        </div>
+      <div class="mode-tabs" role="tablist" data-task="pickcup">
+        <button class="mode-tab is-active" role="tab" data-mode="A" type="button">
+          <span class="mode-tab__label">Mode A</span>
+          <span class="mode-tab__title">Handle grasp</span>
+        </button>
+        <button class="mode-tab" role="tab" data-mode="B" type="button">
+          <span class="mode-tab__label">Mode B</span>
+          <span class="mode-tab__title">Rim grasp</span>
+        </button>
       </div>
+
+      <figure class="media-block">
+        <div class="media-block__chrome">
+          <div class="vp" data-vp data-default-rate="2"
+               data-task-modes='{"A":{"src":"assets/videos/pickcup/mars.mp4","caption":"Mode A — the gripper closes around the handle and lifts. The mug body stays clear of the fingers."},"B":{"src":"assets/videos/pickcup/mars_02.mp4","caption":"Mode B — the gripper closes around the rim from above and lifts. Same scene, same policy: only w differs between rollouts."}}'>
+            <video class="vp__video" autoplay muted loop playsinline preload="metadata"
+                   poster="assets/posters/pickcup_mars.jpg"
+                   src="assets/videos/pickcup/mars.mp4"></video>
+            <div class="vp__overlay"><button class="vp__playpause" aria-label="Play/Pause" type="button"></button></div>
+            <div class="vp__controls">
+              <button class="vp__pp-mini" aria-label="Play/Pause" type="button"></button>
+              <div class="vp__scrub" role="slider" tabindex="0" aria-label="Scrub" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="vp__scrub-fill"></div><div class="vp__scrub-thumb"></div>
+              </div>
+              <span class="vp__time">0:00 / 0:00</span>
+              <button class="vp__speed" data-speeds="1,2,4" aria-label="Speed" type="button">2×</button>
+            </div>
+          </div>
+        </div>
+        <div class="media-block__meta">
+          <span class="media-block__label">FIG. 05 · Pick Cup · Galaxea R1 Lite</span>
+          <span class="media-block__rule"></span>
+          <h4 class="media-block__title">Two equally valid grasp poses.</h4>
+          <p class="media-block__caption" data-mode-caption>
+            Mode A — the gripper closes around the handle and lifts. The mug
+            body stays clear of the fingers.
+          </p>
+        </div>
+      </figure>
     </article>
 
-    <!-- PICK VEGETABLE — 3-COLUMN METHOD COMPARISON -->
-    <article class="task-card" data-reveal>
-      <div class="task-card__title">
+    <!-- PICK VEGETABLE — Mode A (carrot) vs Mode B (daikon) -->
+    <article class="task-card task-card--mode-toggle" id="task-pickvege" data-reveal>
+      <header class="task-card__title">
         <h3>Pick Vegetable</h3>
-        <span class="kicker">Galaxea R1 Lite</span>
-      </div>
+        <span class="kicker">Galaxea R1 Lite · MARS</span>
+      </header>
       <p class="task-card__desc">
-        Reach, grasp, and lift across cluttered produce. The held-out test
-        includes daikon, carrot, and lemon at varied orientations — a stress
-        test for modal balance under data scarcity.
+        Carrot and daikon are placed on opposite sides of a mango at every
+        held-out evaluation. Either pick counts as a successful rollout.
+        MARS preserves the modal balance even under heavy data scarcity
+        and over-training, where baselines collapse.
       </p>
 
-      <div class="method-grid">
-        <div class="method-col">
-          <div class="method-col__chrome">
-            <div class="vp" data-vp data-default-rate="2">
-              <video class="vp__video" autoplay muted loop playsinline preload="metadata"
-                     poster="assets/posters/pickvege_mars.jpg"
-                     src="assets/videos/pickvege/mars.mp4"></video>
-              <div class="vp__overlay"><button class="vp__playpause" aria-label="Play/Pause" type="button"></button></div>
-              <div class="vp__controls">
-                <button class="vp__pp-mini" aria-label="Play/Pause" type="button"></button>
-                <div class="vp__scrub" role="slider" tabindex="0" aria-label="Scrub" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="vp__scrub-fill"></div><div class="vp__scrub-thumb"></div>
-                </div>
-                <span class="vp__time">0:00 / 0:00</span>
-                <button class="vp__speed" data-speeds="1,2,4" aria-label="Speed" type="button">2×</button>
-              </div>
-            </div>
-          </div>
-          <div class="method-col__name" data-method="MARS"><span class="badge">MARS</span>Ours</div>
-          <p class="method-col__verdict">Holds modal balance even under over-training and data scarcity.</p>
-        </div>
-
-        <div class="method-col">
-          <div class="method-col__chrome">
-            <div class="vp" data-vp data-default-rate="2">
-              <video class="vp__video" autoplay muted loop playsinline preload="metadata"
-                     poster="assets/posters/pickvege_fm.jpg"
-                     src="assets/videos/pickvege/fm.mp4"></video>
-              <div class="vp__overlay"><button class="vp__playpause" aria-label="Play/Pause" type="button"></button></div>
-              <div class="vp__controls">
-                <button class="vp__pp-mini" aria-label="Play/Pause" type="button"></button>
-                <div class="vp__scrub" role="slider" tabindex="0" aria-label="Scrub" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="vp__scrub-fill"></div><div class="vp__scrub-thumb"></div>
-                </div>
-                <span class="vp__time">0:00 / 0:00</span>
-                <button class="vp__speed" data-speeds="1,2,4" aria-label="Speed" type="button">2×</button>
-              </div>
-            </div>
-          </div>
-          <div class="method-col__name" data-method="FM"><span class="badge">FM</span>Flow Matching</div>
-          <p class="method-col__verdict">Drifts to one mode as training proceeds; long inference path.</p>
-        </div>
-
-        <div class="method-col">
-          <div class="method-col__chrome">
-            <div class="vp" data-vp data-default-rate="2">
-              <video class="vp__video" autoplay muted loop playsinline preload="metadata"
-                     poster="assets/posters/pickvege_a2a.jpg"
-                     src="assets/videos/pickvege/a2a.mp4"></video>
-              <div class="vp__overlay"><button class="vp__playpause" aria-label="Play/Pause" type="button"></button></div>
-              <div class="vp__controls">
-                <button class="vp__pp-mini" aria-label="Play/Pause" type="button"></button>
-                <div class="vp__scrub" role="slider" tabindex="0" aria-label="Scrub" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="vp__scrub-fill"></div><div class="vp__scrub-thumb"></div>
-                </div>
-                <span class="vp__time">0:00 / 0:00</span>
-                <button class="vp__speed" data-speeds="1,2,4" aria-label="Speed" type="button">2×</button>
-              </div>
-            </div>
-          </div>
-          <div class="method-col__name" data-method="A2A"><span class="badge">A2A</span>Action-to-Action</div>
-          <p class="method-col__verdict">Collapses to a single grasp pose; misses oriented or occluded vegetables.</p>
-        </div>
+      <div class="mode-tabs" role="tablist" data-task="pickvege">
+        <button class="mode-tab is-active" role="tab" data-mode="A" type="button">
+          <span class="mode-tab__label">Mode A</span>
+          <span class="mode-tab__title">Pick carrot</span>
+        </button>
+        <button class="mode-tab" role="tab" data-mode="B" type="button">
+          <span class="mode-tab__label">Mode B</span>
+          <span class="mode-tab__title">Pick daikon</span>
+        </button>
       </div>
+
+      <figure class="media-block">
+        <div class="media-block__chrome">
+          <div class="vp" data-vp data-default-rate="2"
+               data-task-modes='{"A":{"src":"assets/videos/pickvege/mars.mp4","caption":"Mode A — the policy commits early to the left-hand carrot, weaves around the mango, grasps and lifts."},"B":{"src":"assets/videos/pickvege/mars_right.mp4","caption":"Mode B — same scene, same start; the policy now commits to the right-hand daikon. Both behaviours are present in the demonstrations and both are preserved."}}'>
+            <video class="vp__video" autoplay muted loop playsinline preload="metadata"
+                   poster="assets/posters/pickvege_mars.jpg"
+                   src="assets/videos/pickvege/mars.mp4"></video>
+            <div class="vp__overlay"><button class="vp__playpause" aria-label="Play/Pause" type="button"></button></div>
+            <div class="vp__controls">
+              <button class="vp__pp-mini" aria-label="Play/Pause" type="button"></button>
+              <div class="vp__scrub" role="slider" tabindex="0" aria-label="Scrub" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="vp__scrub-fill"></div><div class="vp__scrub-thumb"></div>
+              </div>
+              <span class="vp__time">0:00 / 0:00</span>
+              <button class="vp__speed" data-speeds="1,2,4" aria-label="Speed" type="button">2×</button>
+            </div>
+          </div>
+        </div>
+        <div class="media-block__meta">
+          <span class="media-block__label">FIG. 06 · Pick Vegetable · Galaxea R1 Lite</span>
+          <span class="media-block__rule"></span>
+          <h4 class="media-block__title">Carrot or daikon — both are valid.</h4>
+          <p class="media-block__caption" data-mode-caption>
+            Mode A — the policy commits early to the left-hand carrot,
+            weaves around the mango, grasps and lifts.
+          </p>
+        </div>
+      </figure>
     </article>
 
     <!-- Real-world summary plot from the paper -->
@@ -590,7 +583,7 @@
         </picture>
       </div>
       <div class="media-block__meta">
-        <span class="media-block__label">FIG. 05 · Real-world summary</span>
+        <span class="media-block__label">FIG. 07 · Real-world summary</span>
         <span class="media-block__rule"></span>
         <h4 class="media-block__title">Success, modal balance, and latency across all four tasks.</h4>
         <p class="media-block__caption">
@@ -627,7 +620,7 @@
         </picture>
       </div>
       <div class="media-block__meta">
-        <span class="media-block__label">FIG. 06 · Multimodal benchmarks</span>
+        <span class="media-block__label">FIG. 08 · Multimodal benchmarks</span>
         <span class="media-block__rule"></span>
         <h4 class="media-block__title">Strategically multimodal tasks.</h4>
         <p class="media-block__caption">
@@ -648,7 +641,7 @@
         </picture>
       </div>
       <div class="media-block__meta">
-        <span class="media-block__label">FIG. 07 · Unimodal benchmarks</span>
+        <span class="media-block__label">FIG. 09 · Unimodal benchmarks</span>
         <span class="media-block__rule"></span>
         <h4 class="media-block__title">Strategically unimodal tasks.</h4>
         <p class="media-block__caption">
@@ -685,7 +678,7 @@
           </picture>
         </div>
         <div class="media-block__meta">
-          <span class="media-block__label">FIG. 08 · Qualitative landscape</span>
+          <span class="media-block__label">FIG. 10 · Qualitative landscape</span>
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Eight policies, one navigation task.</h4>
           <p class="media-block__caption">
@@ -705,7 +698,7 @@
           </picture>
         </div>
         <div class="media-block__meta">
-          <span class="media-block__label">FIG. 09 · Architectural failure</span>
+          <span class="media-block__label">FIG. 11 · Architectural failure</span>
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Deterministic regression averages into walls.</h4>
           <p class="media-block__caption">
@@ -724,7 +717,7 @@
           </picture>
         </div>
         <div class="media-block__meta">
-          <span class="media-block__label">FIG. 10 · Training-time failure</span>
+          <span class="media-block__label">FIG. 12 · Training-time failure</span>
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Adding reconstruction loss kills expressivity.</h4>
           <p class="media-block__caption">
@@ -744,7 +737,7 @@
           </picture>
         </div>
         <div class="media-block__meta">
-          <span class="media-block__label">FIG. 11 · Source-variance sweep</span>
+          <span class="media-block__label">FIG. 13 · Source-variance sweep</span>
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Why pure Gaussian noise is the wrong default.</h4>
           <p class="media-block__caption">
@@ -763,7 +756,7 @@
           </picture>
         </div>
         <div class="media-block__meta">
-          <span class="media-block__label">FIG. 12 · Robustness on Pick Cup</span>
+          <span class="media-block__label">FIG. 14 · Robustness on Pick Cup</span>
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Modal balance under stress.</h4>
           <p class="media-block__caption">

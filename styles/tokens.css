@@ -1,33 +1,39 @@
-/* MARS Policy — design tokens (v2)
-   Warm-shifted dark palette + dual accent (火星珊瑚 / 暖象牙).
+/* MARS Policy — design tokens (v8)
+   Warm-shifted dark palette + Newsreader serif body for paper-grade
+   readability. Three-level text hierarchy.
    Single source of truth for color, type, spacing, motion. */
 
 :root {
-  /* --- color (v2) --- */
-  --bg:            #0F0F11;
-  --bg-elev:       #16161A;
-  --bg-elev-2:     #1C1C21;
-  --border:        #26262C;
-  --border-strong: #34343C;
-  --text:          #EDEAE3;
-  --text-soft:     #A8A39A;
-  --text-muted:    #76726B;
-  --accent:        #FF6B5A;
-  --accent-soft:   rgba(255, 107, 90, 0.16);
-  --accent-line:   rgba(255, 107, 90, 0.5);
-  --accent-warm:   #D9D2C0;
+  /* --- color (v8: 3-level text hierarchy) --- */
+  --bg:             #0F0F11;
+  --bg-elev:        #16161A;
+  --bg-elev-2:      #1C1C21;
+  --border:         #26262C;
+  --border-strong:  #34343C;
+  --text-display:   #F4F0E8;
+  --text:           #DAD5CA;
+  --text-soft:      #948C7F;
+  --text-muted:     #6E685F;
+  --accent:         #FF6B5A;
+  --accent-soft:    rgba(255, 107, 90, 0.16);
+  --accent-line:    rgba(255, 107, 90, 0.5);
+  --accent-warm:    #D9D2C0;
 
-  /* --- type --- */
-  --serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
-  --sans:  'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont,
-           'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
-  --mono:  'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* --- type (v8: Newsreader serif body) --- */
+  --serif-display:  'Instrument Serif', 'Times New Roman', Georgia, serif;
+  --serif-body:     'Newsreader', 'Source Serif Pro', 'Source Serif Pro', Georgia, serif;
+  --sans:           'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont,
+                    'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+  --mono:           'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Legacy alias — kept so any unmigrated rule still resolves */
+  --serif: var(--serif-display);
 
   --text-xs:   12px;
   --text-sm:   14px;
-  --text-base: 17px;
-  --text-lg:   19px;
-  --text-xl:   22px;
+  --text-base: 18px;
+  --text-lg:   20px;
+  --text-xl:   23px;
   --text-2xl:  28px;
   --text-3xl:  40px;
   --text-4xl:  56px;
@@ -36,7 +42,7 @@
 
   --leading-tight:  1.08;
   --leading-snug:   1.25;
-  --leading-normal: 1.7;
+  --leading-normal: 1.72;
   --leading-loose:  1.85;
 
   --tracking-tight:  -0.045em;
@@ -56,7 +62,7 @@
   --s-9:  96px;
   --s-10: 128px;
   --s-11: 160px;
-  --section-gap: min(15vw, 200px);
+  --section-gap: min(9vw, 128px);
   --container-w: 1240px;
   --container-pad: clamp(20px, 4vw, 56px);
   --nav-height: 64px;

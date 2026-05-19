@@ -192,29 +192,30 @@ body > * { position: relative; z-index: 1; }
 }
 
 .hero__title {
-  font-family: var(--serif);
+  font-family: var(--serif-display);
   font-weight: 400;
   font-size: var(--hero);
   line-height: 0.92;
   letter-spacing: var(--tracking-tight);
   margin-bottom: var(--s-4);
+  color: var(--text-display);
   text-shadow: 0 4px 40px rgba(0, 0, 0, 0.55);
 }
 
 .hero__sub {
-  font-family: var(--serif);
+  font-family: var(--serif-display);
   font-style: italic;
   font-size: clamp(24px, 3vw, 40px);
-  color: var(--text);
+  color: var(--text-display);
   line-height: 1.2;
   margin-bottom: var(--s-4);
   text-shadow: 0 2px 28px rgba(0, 0, 0, 0.7), 0 0 6px rgba(0, 0, 0, 0.4);
 }
 
 .hero__pitch {
-  font-family: var(--sans);
+  font-family: var(--serif-body);
   font-size: var(--text-lg);
-  color: var(--text);
+  color: var(--text-display);
   max-width: 52ch;
   margin: 0 auto var(--s-7);
   letter-spacing: 0.005em;
@@ -225,10 +226,10 @@ body > * { position: relative; z-index: 1; }
 .hero__authors {
   max-width: 1000px;
   margin: 0 auto var(--s-3);
-  font-family: var(--sans);
+  font-family: var(--serif-body);
   font-size: var(--text-base);
   line-height: 1.6;
-  color: var(--text);
+  color: var(--text-display);
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.65);
 }
 
@@ -251,9 +252,10 @@ body > * { position: relative; z-index: 1; }
 }
 
 .hero__affil {
-  font-family: var(--sans);
-  font-size: var(--text-sm);
-  color: rgba(237, 234, 227, 0.85);
+  font-family: var(--serif-body);
+  font-style: italic;
+  font-size: var(--text-base);
+  color: rgba(244, 240, 232, 0.92);
   margin: 0 auto var(--s-2);
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.65);
 }
@@ -470,11 +472,11 @@ body > * { position: relative; z-index: 1; }
 }
 
 .tldr__line {
-  font-family: var(--serif);
+  font-family: var(--serif-display);
   font-size: clamp(32px, 4.4vw, 56px);
   line-height: 1.1;
   letter-spacing: var(--tracking-tight);
-  color: var(--text);
+  color: var(--text-display);
   margin-bottom: var(--s-4);
   max-width: 26ch;
 }
@@ -482,13 +484,14 @@ body > * { position: relative; z-index: 1; }
 .tldr__line em { font-style: italic; color: var(--text-soft); }
 
 .tldr__sub {
-  font-family: var(--serif);
+  font-family: var(--serif-body);
   font-style: italic;
   font-size: clamp(20px, 2.2vw, 28px);
-  line-height: 1.35;
+  line-height: 1.4;
   color: var(--text-soft);
   margin-bottom: var(--s-9);
   max-width: 42ch;
+  font-weight: 400;
 }
 
 .stats {
@@ -507,11 +510,11 @@ body > * { position: relative; z-index: 1; }
 }
 
 .stat__value {
-  font-family: var(--serif);
+  font-family: var(--serif-display);
   font-size: clamp(40px, 5vw, 72px);
   line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--text);
+  color: var(--text-display);
   display: flex;
   align-items: baseline;
   gap: 4px;
@@ -527,25 +530,29 @@ body > * { position: relative; z-index: 1; }
 
 .stat__label {
   margin-top: var(--s-3);
+  font-family: var(--serif-body);
   font-size: var(--text-sm);
   color: var(--text-muted);
   letter-spacing: 0.01em;
+  line-height: 1.5;
 }
 
 /* ============================================================
    Section heading helper
    ============================================================ */
 .section-title {
-  font-family: var(--serif);
+  font-family: var(--serif-display);
   font-weight: 400;
   font-size: var(--section-h);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   margin-bottom: var(--s-6);
   max-width: 22ch;
+  color: var(--text-display);
 }
 
 .section-lead {
+  font-family: var(--serif-body);
   font-size: var(--text-xl);
   color: var(--text-soft);
   line-height: var(--leading-snug);
@@ -579,14 +586,20 @@ body > * { position: relative; z-index: 1; }
 @media (min-width: 720px) { .dilemma__rule { display: block; } }
 
 .dilemma__col h3 {
-  font-family: var(--serif);
+  font-family: var(--serif-display);
   font-weight: 400;
   font-size: clamp(24px, 2.8vw, 36px);
   line-height: 1.2;
   margin-bottom: var(--s-4);
+  color: var(--text-display);
 }
 
-.dilemma__col p { color: var(--text-soft); max-width: 40ch; }
+.dilemma__col p {
+  font-family: var(--serif-body);
+  color: var(--text-soft);
+  max-width: 40ch;
+  line-height: 1.6;
+}
 
 .dilemma__col--right { text-align: left; }
 @media (min-width: 720px) {
@@ -595,55 +608,49 @@ body > * { position: relative; z-index: 1; }
 }
 
 /* ============================================================
-   Insight (v4 — dominant figure on top, quote + caption below)
+   Insight (v8 — vertical stack: figure → centered quote → caption)
    ============================================================ */
 .insight-stack {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--s-8);
+  gap: var(--s-6);
 }
 
 .insight-stack .media-block { margin: 0; }
 .insight-stack .media-block__chrome { padding: var(--s-3); }
 
 .insight-narrative {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--s-5);
-  align-items: start;
   max-width: 920px;
   margin: 0 auto;
   text-align: center;
-}
-
-@media (min-width: 860px) {
-  .insight-narrative {
-    grid-template-columns: 1.1fr 1fr;
-    text-align: left;
-    gap: var(--s-9);
-  }
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
 }
 
 .insight-quote {
-  font-family: var(--serif);
-  font-size: clamp(36px, 5vw, 72px);
+  font-family: var(--serif-display);
+  font-size: clamp(36px, 5vw, 64px);
   line-height: 1.05;
   letter-spacing: var(--tracking-tight);
-  margin: 0;
-  max-width: 16ch;
+  color: var(--text-display);
+  margin: 0 auto;
+  max-width: 22ch;
 }
 
 .insight-quote em { font-style: italic; color: var(--accent); }
 
 .insight-caption {
+  font-family: var(--serif-body);
   font-size: var(--text-lg);
   color: var(--text-soft);
-  line-height: 1.55;
-  max-width: 56ch;
-  margin: 0;
+  line-height: 1.6;
+  max-width: 60ch;
+  margin: 0 auto;
 }
 
-.insight-caption strong { color: var(--text); font-weight: 500; }
+.insight-caption strong { color: var(--text-display); font-weight: 500; }
+.insight-caption .katex { color: var(--text); }
 
 /* ============================================================
    Method
@@ -658,9 +665,11 @@ body > * { position: relative; z-index: 1; }
 .method-figure img { width: 100%; border-radius: var(--r-sm); }
 
 .method-figure__caption {
+  font-family: var(--serif-body);
   font-size: var(--text-sm);
   color: var(--text-muted);
   margin-top: var(--s-3);
+  line-height: 1.55;
 }
 
 .steps { counter-reset: step; }
@@ -686,14 +695,20 @@ body > * { position: relative; z-index: 1; }
 }
 
 .steps__heading {
-  font-family: var(--serif);
+  font-family: var(--serif-display);
   font-size: var(--text-xl);
   font-weight: 400;
   line-height: 1.25;
   margin-bottom: var(--s-2);
+  color: var(--text-display);
 }
 
-.steps__body { color: var(--text-soft); font-size: var(--text-base); }
+.steps__body {
+  font-family: var(--serif-body);
+  color: var(--text-soft);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
 
 .equation {
   display: block;
@@ -755,30 +770,94 @@ body > * { position: relative; z-index: 1; }
 
 .media-block__title {
   grid-column: 1 / -1;
-  font-family: var(--serif);
+  font-family: var(--serif-display);
   font-weight: 400;
   font-size: clamp(20px, 2.2vw, 26px);
   line-height: 1.2;
-  color: var(--text);
+  color: var(--text-display);
   margin: 0;
 }
 
 .media-block__caption {
   grid-column: 1 / -1;
+  font-family: var(--serif-body);
   font-size: var(--text-base);
   color: var(--text-soft);
-  line-height: 1.6;
-  max-width: 64ch;
+  line-height: 1.65;
+  max-width: 70ch;
   margin: 0;
 }
 
-.media-block__caption strong { color: var(--text); font-weight: 500; }
-.media-block__caption em { color: var(--accent-warm); font-style: normal; font-family: var(--mono); font-size: 0.92em; }
+.media-block__caption strong { color: var(--accent-warm); font-weight: 500; }
+.media-block__caption em { color: var(--accent-warm); font-style: normal; font-family: var(--mono); font-size: 0.88em; letter-spacing: 0.02em; }
 
 /* ============================================================
-   Real-World task cards (v3 — drop tabs, add method-grid)
+   Real-World task cards (v8 — Mode A/B toggle per task)
    ============================================================ */
-.task-card { position: relative; }
+.task-card { position: relative; margin-bottom: var(--s-9); }
+
+.task-card--mode-toggle .task-card__title {
+  margin-bottom: var(--s-2);
+}
+
+/* Mode A/B toggle buttons (sit between description and video) */
+.mode-tabs {
+  display: inline-flex;
+  gap: var(--s-2);
+  margin-bottom: var(--s-5);
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  flex-wrap: wrap;
+}
+
+.mode-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: var(--s-2) var(--s-4);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: background var(--d-fast) var(--ease),
+              border-color var(--d-fast) var(--ease),
+              color var(--d-fast) var(--ease);
+  text-align: left;
+  min-width: 140px;
+}
+
+.mode-tab__label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.mode-tab__title {
+  font-family: var(--serif-display);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--text-soft);
+}
+
+.mode-tab:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.mode-tab:hover .mode-tab__title { color: var(--text-display); }
+
+.mode-tab.is-active {
+  background: rgba(255, 107, 90, 0.10);
+  border-color: var(--accent-line);
+}
+
+.mode-tab.is-active .mode-tab__label { color: var(--accent); }
+.mode-tab.is-active .mode-tab__title { color: var(--text-display); }
 
 .task-card__body { padding: var(--s-5) 0 0; }
 
@@ -791,10 +870,11 @@ body > * { position: relative; z-index: 1; }
 }
 
 .task-card__title h3 {
-  font-family: var(--serif);
+  font-family: var(--serif-display);
   font-weight: 400;
   font-size: var(--text-2xl);
   line-height: 1.1;
+  color: var(--text-display);
 }
 
 .task-card__title .kicker {
@@ -806,11 +886,12 @@ body > * { position: relative; z-index: 1; }
 }
 
 .task-card__desc {
+  font-family: var(--serif-body);
   color: var(--text-soft);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   line-height: 1.6;
-  margin-bottom: var(--s-4);
-  max-width: 56ch;
+  margin-bottom: var(--s-5);
+  max-width: 64ch;
 }
 
 /* 3-column method comparison grid (MARS / FM / A2A side-by-side) */
@@ -1149,7 +1230,9 @@ body > * { position: relative; z-index: 1; }
 .footer__links a:hover { color: var(--accent); }
 
 .footer__legal {
-  font-size: var(--text-xs);
+  font-family: var(--serif-body);
+  font-style: italic;
+  font-size: var(--text-sm);
   color: var(--text-muted);
   letter-spacing: 0.01em;
 }
