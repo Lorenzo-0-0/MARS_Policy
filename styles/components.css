@@ -1078,8 +1078,8 @@ body > * { position: relative; z-index: 1; }
   gap: var(--s-3);
   padding: 10px var(--s-3) 9px;
   background: linear-gradient(to top, rgba(0,0,0,0.78), rgba(0,0,0,0));
-  opacity: 0.5;
-  transition: opacity var(--d-fast) var(--ease);
+  opacity: 0;
+  transition: opacity var(--d-base) var(--ease);
   z-index: 2;
 }
 .cmp__media:hover .cmp__ctrl,
