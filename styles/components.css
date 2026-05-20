@@ -760,6 +760,20 @@ body > * { position: relative; z-index: 1; }
   display: block;
 }
 
+/* v10 — black figures merge into the page via screen blend.
+   Pure black (#000) contributes nothing under "screen", so it shows
+   the page background exactly; bright content composites on top.
+   This makes the figure black === page black on ANY bg value. */
+.media-block:not(.media-block--card) .media-block__chrome img {
+  mix-blend-mode: screen;
+}
+
+/* Narrow / portrait figures shouldn't span full width */
+.media-block--narrow .media-block__chrome {
+  max-width: 660px;
+  margin-inline: auto;
+}
+
 .media-block__meta {
   margin-top: var(--s-4);
   display: grid;
