@@ -234,15 +234,14 @@
           <span class="media-block__label">FIG. 01 · 2D Navigation</span>
           <span class="media-block__rule"></span>
           <p class="media-block__caption">
-            Eight panels staging the problem and the fix. Top row: <strong>(a)</strong>
-            expert trajectories that exhibit two valid paths around obstacles;
-            <strong>(b)</strong> a generative policy retains the modes but pays a heavy
-            denoising cost everywhere; <strong>(c)</strong> a deterministic policy collapses
-            the two modes into a single, often colliding path; <strong>(d)</strong> MARS
-            keeps the modes only where they matter. Bottom row: <strong>(e)</strong>
-            training efficiency, <strong>(f)</strong> the adaptive flow process, <strong>(g)</strong>
-            per-step inference cost, <strong>(h)</strong> real-world stills (Pick Cup,
-            Pick Vegetable, Block Push).
+            A staged 2D navigation task. <strong>(a)</strong> Expert trajectories
+            exhibit two valid paths around the obstacle. <strong>(b)</strong> A
+            generative policy retains both modes but pays a heavy denoising cost
+            everywhere. <strong>(c)</strong> A deterministic policy collapses the
+            two modes into a single, often colliding path. <strong>(d)</strong>
+            MARS keeps multimodality only where it matters — the colour map shows
+            the per-step multimodality degree rising near the branch point and
+            falling to zero elsewhere.
           </p>
         </div>
       </figure>
@@ -670,7 +669,7 @@
     </p>
 
     <div class="ablations__grid">
-      <figure class="media-block media-block--wide">
+      <figure class="media-block media-block--wide media-block--card">
         <div class="media-block__chrome">
           <picture>
             <source srcset="assets/images/appendix/2d_benchmark.webp" type="image/webp" />
@@ -690,7 +689,7 @@
         </div>
       </figure>
 
-      <figure class="media-block">
+      <figure class="media-block media-block--card">
         <div class="media-block__chrome">
           <picture>
             <source srcset="assets/images/appendix/a2a_failed.webp" type="image/webp" />
@@ -709,7 +708,7 @@
         </div>
       </figure>
 
-      <figure class="media-block">
+      <figure class="media-block media-block--card">
         <div class="media-block__chrome">
           <picture>
             <source srcset="assets/images/appendix/fm_reconstruction.webp" type="image/webp" />
@@ -729,7 +728,7 @@
         </div>
       </figure>
 
-      <figure class="media-block">
+      <figure class="media-block media-block--card">
         <div class="media-block__chrome">
           <picture>
             <source srcset="assets/images/appendix/loss_swap.webp" type="image/webp" />
@@ -748,7 +747,7 @@
         </div>
       </figure>
 
-      <figure class="media-block">
+      <figure class="media-block media-block--card">
         <div class="media-block__chrome">
           <picture>
             <source srcset="assets/images/appendix/appen_fm.webp" type="image/webp" />

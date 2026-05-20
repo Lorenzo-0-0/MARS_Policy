@@ -727,15 +727,31 @@ body > * { position: relative; z-index: 1; }
    ============================================================ */
 .media-block { margin: 0 0 var(--s-9); }
 
+/* v9 — black figures bleed into the page (no card, no border).
+   The figures already carry a pure-black background, so a transparent
+   chrome makes them merge seamlessly with the page bg. */
 .media-block__chrome {
+  background: transparent;
+  border: 0;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+/* Videos still need a defined black frame to avoid a flash of page bg */
+.media-block__chrome:has(.vp) {
+  background: #000;
+}
+
+/* --card — keep the dark framed treatment for figures that are NOT
+   black-background (e.g. white matplotlib appendix plots). */
+.media-block--card .media-block__chrome {
   background: var(--bg-elev-2);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
-  overflow: hidden;
+  padding: var(--s-4);
   transition: border-color var(--d-base) var(--ease);
 }
-
-.media-block:hover .media-block__chrome { border-color: var(--border-strong); }
+.media-block--card:hover .media-block__chrome { border-color: var(--border-strong); }
 
 .media-block__chrome img,
 .media-block__chrome > .vp,
