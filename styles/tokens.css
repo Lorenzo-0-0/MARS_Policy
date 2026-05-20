@@ -19,26 +19,27 @@
   --accent-line:    rgba(255, 107, 90, 0.5);
   --accent-warm:    #D9D2C0;
 
-  /* --- type (v8: Newsreader serif body) --- */
-  --serif-display:  'Instrument Serif', 'Times New Roman', Georgia, serif;
-  --serif-body:     'Newsreader', 'Source Serif Pro', 'Source Serif Pro', Georgia, serif;
+  /* --- type (outturn-inspired: Oswald condensed display + Cormorant Garamond body) --- */
+  --display:        'Oswald', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  --serif-display:  'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  --serif-body:     'Cormorant Garamond', 'Times New Roman', Georgia, serif;
   --sans:           'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont,
                     'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
   --mono:           'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
   /* Legacy alias — kept so any unmigrated rule still resolves */
-  --serif: var(--serif-display);
+  --serif: var(--serif-body);
 
-  --text-xs:   12px;
-  --text-sm:   14px;
-  --text-base: 18px;
-  --text-lg:   20px;
-  --text-xl:   23px;
-  --text-2xl:  28px;
-  --text-3xl:  40px;
-  --text-4xl:  56px;
-  --hero:      clamp(72px, 13vw, 184px);
-  --section-h: clamp(40px, 5.5vw, 72px);
+  --text-xs:   14px;
+  --text-sm:   16px;
+  --text-base: 22px;
+  --text-lg:   23px;
+  --text-xl:   26px;
+  --text-2xl:  31px;
+  --text-3xl:  42px;
+  --text-4xl:  58px;
+  --hero:      clamp(40px, 9.5vw, 184px);
+  --section-h: clamp(30px, 4.6vw, 64px);
 
   --leading-tight:  1.08;
   --leading-snug:   1.25;

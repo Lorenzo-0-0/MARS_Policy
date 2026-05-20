@@ -7,16 +7,16 @@
   <meta name="theme-color" content="#0F0F11" />
 
   <title>MARS Policy — Multimodality Only When It Matters</title>
-  <meta name="description" content="A modal-adaptive sampling policy that injects stochastic multimodality only when the task demands it — turning stochasticity from a fixed burden into an adaptive resource." />
+  <meta name="description" content="MARS injects a proper amount of stochastic noise only at the proper time — a modal-adaptive robot sampling policy that is multimodal when it matters and fast otherwise." />
 
   <meta property="og:title" content="MARS Policy — Multimodality Only When It Matters" />
-  <meta property="og:description" content="Inject noise only when the task demands it. A modal-adaptive robot sampling policy." />
+  <meta property="og:description" content="Inject a proper amount of noise only at the proper time. A modal-adaptive robot sampling policy." />
   <meta property="og:type" content="article" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Oswald:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
 
@@ -32,12 +32,12 @@
      ========================================================= -->
 <nav class="nav" aria-label="Primary">
   <div class="nav__inner">
-    <a href="#top" class="nav__brand"><span class="nav__brand-icon" aria-hidden="true"></span>MARS</a>
+    <a href="#top" class="nav__brand"><span class="nav__brand-icon" aria-hidden="true"></span>MARS Policy</a>
     <div class="nav__links">
       <a class="nav__link" href="#abstract">Idea</a>
-      <a class="nav__link" href="#method">Method</a>
       <a class="nav__link" href="#real-world">Real-World</a>
       <a class="nav__link" href="#benchmarks">Benchmarks</a>
+      <a class="nav__link" href="#method">Method</a>
       <a class="nav__link" href="#bibtex">Cite</a>
       <a class="nav__cta" href="#paper" data-placeholder="paper-pdf">Paper ↗</a>
     </div>
@@ -51,8 +51,8 @@
   <div class="hero__media hero__media--grid" aria-hidden="true">
     <!-- Row 1: each task's mode A -->
     <video autoplay muted loop playsinline preload="metadata"
-           poster="assets/videos/hero_grid/01_pickvege_left.jpg"
-           src="assets/videos/hero_grid/01_pickvege_left.mp4"></video>
+           poster="assets/videos/hero_grid/01_pickvege_left.jpg?v=2"
+           src="assets/videos/hero_grid/01_pickvege_left.mp4?v=2"></video>
     <video autoplay muted loop playsinline preload="metadata"
            poster="assets/videos/hero_grid/03_pickcup_modeA.jpg"
            src="assets/videos/hero_grid/03_pickcup_modeA.mp4"></video>
@@ -64,8 +64,8 @@
            src="assets/videos/hero_grid/07_pusht_modeA.mp4"></video>
     <!-- Row 2: each task's mode B -->
     <video autoplay muted loop playsinline preload="metadata"
-           poster="assets/videos/hero_grid/02_pickvege_right.jpg"
-           src="assets/videos/hero_grid/02_pickvege_right.mp4"></video>
+           poster="assets/videos/hero_grid/02_pickvege_right.jpg?v=2"
+           src="assets/videos/hero_grid/02_pickvege_right.mp4?v=2"></video>
     <video autoplay muted loop playsinline preload="metadata"
            poster="assets/videos/hero_grid/04_pickcup_modeB.jpg"
            src="assets/videos/hero_grid/04_pickcup_modeB.mp4"></video>
@@ -84,18 +84,16 @@
       Multimodality Only When It Matters
     </p>
 
-    <p class="hero__pitch" data-reveal style="--reveal-delay: 320ms">
-      A modal-adaptive sampling policy for robot manipulation.
-    </p>
-
     <p class="hero__authors" data-reveal style="--reveal-delay: 440ms" data-placeholder="authors">
       <a href="https://jiajindou.github.io/" target="_blank" rel="noopener">Jindou Jia</a><sup>*</sup>,
-      <a href="https://reagan1311.github.io/" target="_blank" rel="noopener">Gen Li</a><sup>*</sup>,
-      <a href="https://xyc0212.github.io/" target="_blank" rel="noopener">Xiangyu Chen</a>,
-      <a href="https://morpheus-an.github.io/" target="_blank" rel="noopener">Tuo An</a>,
-      Yuxuan Hu,
+      <a href="https://morpheus-an.github.io/" target="_blank" rel="noopener">Tuo An</a><sup>*</sup>,
+      Yuxuan Hu<sup>*</sup>,
+      <a href="https://reagan1311.github.io/" target="_blank" rel="noopener">Gen Li</a>,
       <a href="https://lorenzo-0-0.github.io/" target="_blank" rel="noopener">Jingliang Li</a>,
-      <a href="https://www.linkedin.com/in/xinying-guo-3307a124b/" target="_blank" rel="noopener">Xinying Guo</a>,
+      <a href="https://hbhalpha.github.io/" target="_blank" rel="noopener">Bohan Hou</a>,
+      <a href="https://xyc0212.github.io/" target="_blank" rel="noopener">Xiangyu Chen</a>,
+      Jiaqi Bai,
+      Bofan Lyu,
       <a href="https://marsyang.site/" target="_blank" rel="noopener">Jianfei Yang</a><sup>†</sup>
     </p>
 
@@ -126,20 +124,6 @@
         BibTeX
       </a>
     </div>
-
-    <div class="hero__logos" data-reveal style="--reveal-delay: 640ms">
-      <div class="hero__logo hero__logo--text">
-        <span class="ntu-mark">NTU</span>
-        <span>
-          <span class="ntu-name">Nanyang Technological</span>
-          <span class="ntu-sub">University · Singapore</span>
-        </span>
-      </div>
-      <div class="hero__logo-divider" aria-hidden="true"></div>
-      <div class="hero__logo">
-        <img src="assets/logos/mars_lab_white.png" alt="MARS Lab" />
-      </div>
-    </div>
   </div>
 
   <div class="hero__scroll" aria-hidden="true">Scroll</div>
@@ -153,7 +137,7 @@
     <p class="chapter-num" data-reveal>§ 01 — Idea</p>
 
     <p class="tldr__line" data-reveal>
-      Inject noise <em>only when the task demands it.</em>
+      Inject a proper amount of noise <em>only at the proper time.</em>
     </p>
     <p class="tldr__sub" data-reveal style="--reveal-delay: 120ms">
       MARS turns stochasticity from a fixed burden into an adaptive resource.
@@ -189,7 +173,7 @@
   <div class="container">
     <p class="chapter-num" data-reveal>§ 02 — Tension</p>
     <h2 class="section-title" data-reveal>
-      Generative policies are expressive — but expensive. Deterministic ones are fast — but rigid.
+      Generative policies are expressive — but expensive. Deterministic ones are fast — but mode-averaging.
     </h2>
 
     <div class="dilemma">
@@ -216,7 +200,7 @@
 </section>
 
 <!-- =========================================================
-     INSIGHT (§ 03 — v3 split: figure left, quote right)
+     INSIGHT (§ 03 — concept figure)
      ========================================================= -->
 <section class="section section--bordered" id="insight">
   <div class="container">
@@ -245,110 +229,34 @@
           </p>
         </div>
       </figure>
-
-      <div class="insight-narrative" data-reveal style="--reveal-delay: 160ms">
-        <h2 class="insight-quote">
-          Not every action needs to be <em>random.</em>
-        </h2>
-        <p class="insight-caption">
-          MARS predicts a per-dimension multimodality weight
-          <span class="katex-inline" data-katex="w \in [0,1]^{D}"></span>
-          and injects stochastic noise <strong>only</strong> on the dimensions and
-          timesteps where the demonstrations exhibit genuine behavioural
-          diversity. Elsewhere the policy degrades gracefully into a fast
-          deterministic regressor — recovering the speed of A2A without the
-          mode collapse.
-        </p>
-      </div>
     </div>
   </div>
 </section>
 
 <!-- =========================================================
-     METHOD (§ 04)
-     ========================================================= -->
-<section class="section section--bordered" id="method">
-  <div class="container">
-    <p class="chapter-num" data-reveal>§ 04 — Method</p>
-    <h2 class="section-title" data-reveal>How MARS works.</h2>
-    <p class="section-lead" data-reveal>
-      A small <em>modal scheduling network</em> reads the recent action
-      history and predicts where multimodality is needed. Its output then
-      governs both the source distribution of the flow and the number of
-      denoising steps at inference.
-    </p>
-
-    <div class="grid-2 grid-2--method">
-      <figure class="media-block" data-reveal>
-        <div class="media-block__chrome">
-          <picture>
-            <source srcset="assets/images/architecture.webp" type="image/webp" />
-            <img src="assets/images/architecture.png" alt="MARS policy architecture diagram" />
-          </picture>
-        </div>
-        <div class="media-block__meta">
-          <span class="media-block__label">FIG. 02 · Architecture</span>
-          <span class="media-block__rule"></span>
-          <p class="media-block__caption">
-            Observation encoder feeds a modal scheduling head that emits
-            per-dimension weights <strong>w</strong>. Those weights interpolate the flow
-            source between the action prior <em>a^≤t</em> and Gaussian noise, then drive
-            an adaptive ODE-step budget at inference.
-          </p>
-        </div>
-      </figure>
-
-      <ol class="steps" role="list" data-reveal style="--reveal-delay: 160ms">
-        <li class="steps__item">
-          <div>
-            <h3 class="steps__heading">Modal scheduling</h3>
-            <p class="steps__body">
-              A lightweight head predicts
-              <span class="katex-inline" data-katex="w \in [0,1]^{D}"></span>
-              from the recent action context — one weight per action dimension.
-              High where demonstrations branch; near zero where they don't.
-            </p>
-          </div>
-        </li>
-        <li class="steps__item">
-          <div>
-            <h3 class="steps__heading">Adaptive source flow</h3>
-            <p class="steps__body">
-              Instead of pure Gaussian noise, the flow starts from a hybrid:
-            </p>
-            <div class="equation" data-katex-display="\alpha_0 \;=\; (1-w)\odot a^{\leq t} \;+\; w\odot \varepsilon, \quad \varepsilon \sim \mathcal{N}(0,I)"></div>
-          </div>
-        </li>
-        <li class="steps__item">
-          <div>
-            <h3 class="steps__heading">Diversity-aware loss &amp; adaptive steps</h3>
-            <p class="steps__body">
-              Training jointly minimises flow-matching, reconstruction and a
-              diversity term matching source spread to target spread. At
-              inference the ODE budget scales with <em>‖w‖∞</em>:
-            </p>
-            <div class="equation" data-katex-display="\mathcal{L} = \mathcal{L}_{\text{fm}} + \lambda_{\text{rec}}\mathcal{L}_{\text{rec}} + \lambda_{\text{div}}\mathcal{L}_{\text{div}}, \qquad K(w) = K_{\max}\!\cdot\!\lVert w \rVert_{\infty}."></div>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     REAL-WORLD (§ 05 — v3, no tabs, 3-col compare for method cards)
+     REAL-WORLD (§ 04 — experiments open here)
      ========================================================= -->
 <section class="section section--bordered" id="real-world">
   <div class="container">
-    <p class="chapter-num" data-reveal>§ 05 — Real-World</p>
-    <h2 class="section-title" data-reveal>Four manipulation tasks. Two robots. One policy class.</h2>
-    <p class="section-lead" data-reveal>
-      Each task admits <strong>two valid solutions</strong>. On the dual-arm
-      tasks we place MARS beside the Flow-Matching and A2A baselines — same
-      scene, same training budget — so the difference is visible directly. On
-      the Franka tasks we show MARS sampling each mode in turn. Every clip
-      loops in real time.
-    </p>
+    <p class="chapter-num" data-reveal>§ 04 — Real-World</p>
+    <h2 class="section-title" data-reveal>Four manipulation tasks. Two robots.</h2>
+
+    <figure class="media-block" data-reveal style="margin-bottom: var(--s-9)">
+      <div class="media-block__chrome">
+        <picture>
+          <source srcset="assets/images/tasks_overview.webp" type="image/webp" />
+          <img src="assets/images/tasks_overview.png" alt="The four real-world tasks, each with two valid modes: Pick Cup (handle or rim), Pick Vegetable (daikon or carrot), Block Push (orange or purple), Push-T (upper or lower)." />
+        </picture>
+      </div>
+      <div class="media-block__meta">
+        <span class="media-block__label">FIG. 02 · The four tasks</span>
+        <span class="media-block__rule"></span>
+        <p class="media-block__caption">
+          Each real-world task admits <strong>two valid modes</strong>. MARS samples
+          both; deterministic baselines collapse to one.
+        </p>
+      </div>
+    </figure>
 
     <!-- PUSH-T — MARS samples both routes (Franka; no FM/A2A footage available) -->
     <article class="task" id="task-pusht" data-reveal>
@@ -436,13 +344,17 @@
         <span class="task__robot">Galaxea R1 Lite</span>
       </header>
       <div class="cmp cmp--3">
-        <figure class="cmp__tile cmp__tile--ours">
+        <figure class="cmp__tile cmp__tile--ours" data-mode-tile>
           <div class="cmp__media">
             <video src="assets/videos/pickcup/mars.mp4" poster="assets/posters/pickcup_mars.jpg" muted loop playsinline preload="metadata"></video>
           </div>
           <figcaption class="cmp__cap">
             <span class="cmp__label cmp__label--ours">MARS<span class="cmp__ours">ours</span></span>
-            <span class="cmp__note">Samples the rim and the handle — smooth, stable reach.</span>
+            <div class="mode-pick" role="group" aria-label="Choose grasp mode">
+              <button type="button" class="mode-pick__btn is-active" aria-pressed="true" data-src="assets/videos/pickcup/mars.mp4" data-poster="assets/posters/pickcup_mars.jpg">Rim</button>
+              <button type="button" class="mode-pick__btn" aria-pressed="false" data-src="assets/videos/pickcup/mars_02.mp4" data-poster="assets/posters/pickcup_mars_02.jpg">Handle</button>
+            </div>
+            <span class="cmp__note">Click a mode — MARS commits to either grasp from the same start.</span>
           </figcaption>
         </figure>
         <figure class="cmp__tile">
@@ -481,13 +393,17 @@
         <span class="task__robot">Galaxea R1 Lite</span>
       </header>
       <div class="cmp cmp--3">
-        <figure class="cmp__tile cmp__tile--ours">
+        <figure class="cmp__tile cmp__tile--ours" data-mode-tile>
           <div class="cmp__media">
             <video src="assets/videos/pickvege/mars.mp4" poster="assets/posters/pickvege_mars.jpg" muted loop playsinline preload="metadata"></video>
           </div>
           <figcaption class="cmp__cap">
             <span class="cmp__label cmp__label--ours">MARS<span class="cmp__ours">ours</span></span>
-            <span class="cmp__note">Commits to carrot or daikon, run to run — both preserved.</span>
+            <div class="mode-pick" role="group" aria-label="Choose target">
+              <button type="button" class="mode-pick__btn is-active" aria-pressed="true" data-src="assets/videos/pickvege/mars.mp4" data-poster="assets/posters/pickvege_mars.jpg">Carrot</button>
+              <button type="button" class="mode-pick__btn" aria-pressed="false" data-src="assets/videos/pickvege/mars_right.mp4" data-poster="assets/posters/pickvege_mars_right.jpg">Daikon</button>
+            </div>
+            <span class="cmp__note">Click a mode — MARS commits to either pick, run to run.</span>
           </figcaption>
         </figure>
         <figure class="cmp__tile">
@@ -512,7 +428,7 @@
     </article>
 
     <!-- Real-world summary plot from the paper -->
-    <figure class="media-block" style="margin-top: var(--s-9)" data-reveal>
+    <figure class="media-block media-block--compact" style="margin-top: var(--s-9)" data-reveal>
       <div class="media-block__chrome">
         <picture>
           <source srcset="assets/images/realtest.webp" type="image/webp" />
@@ -520,14 +436,15 @@
         </picture>
       </div>
       <div class="media-block__meta">
-        <span class="media-block__label">FIG. 07 · Real-world summary</span>
+        <span class="media-block__label">FIG. 03 · Real-world summary</span>
         <span class="media-block__rule"></span>
         <h4 class="media-block__title">Success, modal balance, and latency across all four tasks.</h4>
         <p class="media-block__caption">
-          Top: per-task success rate (higher is better). Middle: modal balance
-          <em>γ</em> — closer to 0.5 means the policy uses each mode equally.
-          Bottom: per-step inference latency in ms. MARS dominates on
-          balance while cutting latency 83% versus FM-DiT.
+          <strong>(a)</strong> Real-world snapshots across all four tasks.
+          <strong>(b)</strong> Success rate — higher is better.
+          <strong>(c)</strong> Modal balance <em>γ</em> — closer to 1 means both
+          modes are used evenly. <strong>(d)</strong> Per-step inference latency;
+          MARS cuts latency ~83% versus FM-DiT.
         </p>
       </div>
     </figure>
@@ -535,12 +452,12 @@
 </section>
 
 <!-- =========================================================
-     SIM BENCHMARKS (§ 06 — v3, no tabs, vertical stack)
+     SIM BENCHMARKS (§ 05 — Simulation Benchmark)
      ========================================================= -->
 <section class="section section--bordered" id="benchmarks">
   <div class="container">
-    <p class="chapter-num" data-reveal>§ 06 — Benchmarks</p>
-    <h2 class="section-title" data-reveal>Eight environments. Two regimes.</h2>
+    <p class="chapter-num" data-reveal>§ 05 — Simulation Benchmark</p>
+    <h2 class="section-title" data-reveal>Eight environments.</h2>
     <p class="section-lead" data-reveal>
       We separate simulated tasks by whether the demonstrations are
       genuinely multimodal or essentially unimodal. MARS wins both — and on
@@ -578,13 +495,13 @@
       </figure>
 
       <div class="bench-text">
-        <span class="media-block__label">FIG. 08 · Multimodal benchmarks</span>
+        <span class="media-block__label">FIG. 04 · Multimodal benchmarks</span>
         <h4 class="media-block__title">Strategically multimodal tasks.</h4>
         <p class="media-block__caption">
-          Three tasks with genuinely bimodal demonstrations. MARS preserves
-          expressivity while flow-matching baselines drift toward a single
-          mode and deterministic baselines collapse. Top: success rate
-          (SR&nbsp;%); bottom: multimodality <em>γ</em>; x-axis: training epochs.
+          <strong>(a)</strong> Push Cube · bimodal directions.
+          <strong>(b)</strong> Grasp Eyeglass · bimodal grasp poses.
+          <strong>(c)</strong> Collision Avoidance · bimodal speeds. Each panel:
+          success rate (top) and modal balance <em>γ</em> (bottom) vs training epochs.
         </p>
         <figure class="bench-legend">
           <picture>
@@ -603,14 +520,14 @@
         </picture>
       </div>
       <div class="media-block__meta">
-        <span class="media-block__label">FIG. 09 · Unimodal benchmarks</span>
+        <span class="media-block__label">FIG. 05 · Unimodal benchmarks</span>
         <span class="media-block__rule"></span>
         <h4 class="media-block__title">Strategically unimodal tasks.</h4>
         <p class="media-block__caption">
-          Close Box (RLBench), Stack Cube (ManiSkill), Pick Cube, Close
-          Drawer (LIBERO). When <strong>w → 0</strong> MARS reduces to a fast deterministic
-          predictor, matching A2A on inference cost; the residual diversity
-          loss accelerates convergence early in training.
+          <strong>(a)</strong> Close Box · RLBench. <strong>(b)</strong> Stack Cube · ManiSkill.
+          <strong>(c)</strong> Pick Cube. <strong>(d)</strong> Close Drawer · LIBERO.
+          When <strong>w → 0</strong> MARS reduces to a fast deterministic predictor,
+          matching A2A on inference cost; the residual diversity loss speeds early convergence.
         </p>
       </div>
     </figure>
@@ -618,18 +535,82 @@
 </section>
 
 <!-- =========================================================
-     ABLATIONS (§ 07 — v3, no collapse, narrative hierarchy)
+     METHOD (§ 06 — moved after benchmarks, above appendix)
+     ========================================================= -->
+<section class="section section--bordered" id="method">
+  <div class="container">
+    <p class="chapter-num" data-reveal>§ 06 — Method</p>
+    <h2 class="section-title" data-reveal>How MARS works.</h2>
+    <p class="section-lead" data-reveal>
+      A small <em>modal scheduling network</em> reads the recent action
+      history and predicts where multimodality is needed. Its output then
+      governs both the source distribution of the flow and the number of
+      denoising steps at inference.
+    </p>
+
+    <div class="grid-2 grid-2--method">
+      <figure class="media-block" data-reveal>
+        <div class="media-block__chrome">
+          <picture>
+            <source srcset="assets/images/architecture.webp" type="image/webp" />
+            <img src="assets/images/architecture.png" alt="MARS policy architecture diagram" />
+          </picture>
+        </div>
+        <div class="media-block__meta">
+          <span class="media-block__label">FIG. 06 · Architecture</span>
+          <span class="media-block__rule"></span>
+          <p class="media-block__caption">
+            Observation encoder feeds a modal scheduling head that emits
+            per-dimension weights <strong>w</strong>. Those weights interpolate the flow
+            source between the action prior <span class="katex-inline" data-katex="\mathbf{a}^{\leq t}"></span> and Gaussian noise, then drive
+            an adaptive ODE-step budget at inference.
+          </p>
+        </div>
+      </figure>
+
+      <ol class="steps" role="list" data-reveal style="--reveal-delay: 160ms">
+        <li class="steps__item">
+          <div>
+            <h3 class="steps__heading">Modal scheduling</h3>
+            <p class="steps__body">
+              A lightweight head predicts
+              <span class="katex-inline" data-katex="w \in (0,1)^{D}"></span>
+              from the recent action context — one weight per action dimension.
+              High where demonstrations branch; near zero where they don't.
+            </p>
+          </div>
+        </li>
+        <li class="steps__item">
+          <div>
+            <h3 class="steps__heading">Adaptive source flow</h3>
+            <p class="steps__body">
+              Instead of pure Gaussian noise, the flow starts from a hybrid:
+            </p>
+            <div class="equation" data-katex-display="\mathbf{a}_0 \;=\; (1-w)\odot \mathbf{a}^{\leq t} \;+\; w\odot \varepsilon, \quad \varepsilon \sim \mathcal{N}(0,I)"></div>
+          </div>
+        </li>
+        <li class="steps__item">
+          <div>
+            <h3 class="steps__heading">Diversity-aware loss &amp; adaptive steps</h3>
+            <p class="steps__body">
+              Training jointly minimises flow-matching, reconstruction and a
+              diversity term matching source spread to target spread. At
+              inference the ODE budget scales with <span class="katex-inline" data-katex="\lVert w\rVert_\infty"></span>:
+            </p>
+            <div class="equation" data-katex-display="\mathcal{L} = \mathcal{L}_{\text{fm}} + \lambda_{\text{rec}}\mathcal{L}_{\text{rec}} + \lambda_{\text{div}}\mathcal{L}_{\text{div}}, \qquad K(w) = K_{\max}\!\cdot\!\lVert w \rVert_{\infty}."></div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ADDITIONAL ANALYSIS (§ 07 — appendix figures)
      ========================================================= -->
 <section class="section section--bordered" id="ablations">
   <div class="container">
-    <p class="chapter-num" data-reveal>§ 07 — Robustness</p>
-    <h2 class="section-title" data-reveal>What breaks the baselines, and why MARS doesn't.</h2>
-    <p class="section-lead" data-reveal>
-      Five qualitative and quantitative ablations, ordered by argument:
-      first the failure surface of every baseline on 2D nav, then the two
-      modes of failure (architectural and training), then the robustness
-      story.
-    </p>
+    <p class="chapter-num" data-reveal>§ 07 — Additional Analysis</p>
 
     <div class="ablations__grid">
       <figure class="media-block media-block--wide media-block--bleed">
@@ -640,7 +621,7 @@
           </picture>
         </div>
         <div class="media-block__meta">
-          <span class="media-block__label">FIG. 10 · Qualitative landscape</span>
+          <span class="media-block__label">FIG. 07 · Qualitative landscape</span>
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Eight policies, one navigation task.</h4>
           <p class="media-block__caption">
@@ -660,7 +641,7 @@
           </picture>
         </div>
         <div class="media-block__meta">
-          <span class="media-block__label">FIG. 11 · Architectural failure</span>
+          <span class="media-block__label">FIG. 08 · Architectural failure</span>
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Deterministic regression averages into walls.</h4>
           <p class="media-block__caption">
@@ -679,7 +660,7 @@
           </picture>
         </div>
         <div class="media-block__meta">
-          <span class="media-block__label">FIG. 12 · Training-time failure</span>
+          <span class="media-block__label">FIG. 09 · Training-time failure</span>
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Adding reconstruction loss kills expressivity.</h4>
           <p class="media-block__caption">
@@ -699,7 +680,7 @@
           </picture>
         </div>
         <div class="media-block__meta">
-          <span class="media-block__label">FIG. 13 · Source-variance sweep</span>
+          <span class="media-block__label">FIG. 10 · Source-variance sweep</span>
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Why pure Gaussian noise is the wrong default.</h4>
           <p class="media-block__caption">
@@ -710,7 +691,7 @@
         </div>
       </figure>
 
-      <figure class="media-block media-block--bleed">
+      <figure class="media-block media-block--bleed media-block--xs">
         <div class="media-block__chrome">
           <picture>
             <source srcset="assets/images/appendix/appen_fm.webp" type="image/webp" />
@@ -718,7 +699,7 @@
           </picture>
         </div>
         <div class="media-block__meta">
-          <span class="media-block__label">FIG. 14 · Robustness on Pick Cup</span>
+          <span class="media-block__label">FIG. 11 · Robustness on Pick Cup</span>
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Modal balance under stress.</h4>
           <p class="media-block__caption">
@@ -744,8 +725,9 @@
       <button class="bib__copy" type="button" aria-label="Copy BibTeX to clipboard">Copy</button>
 <pre id="bibtex-source">@inproceedings{mars2026,
   title     = {{MARS} Policy: Multimodality Only When It Matters},
-  author    = {Jia, Jindou and Li, Gen and Chen, Xiangyu and An, Tuo and
-               Hu, Yuxuan and Li, Jingliang and Guo, Xinying and Yang, Jianfei},
+  author    = {Jia, Jindou and An, Tuo and Hu, Yuxuan and Li, Gen and
+               Li, Jingliang and Hou, Bohan and Chen, Xiangyu and Bai, Jiaqi and
+               Lyu, Bofan and Yang, Jianfei},
   booktitle = {Preprint},
   year      = {2026}
 }</pre>
@@ -782,6 +764,7 @@
 <script src="scripts/video-player.js"    defer></script>
 <script src="scripts/method-toggle.js"   defer></script>
 <script src="scripts/comparison.js"      defer></script>
+<script src="scripts/mode-select.js"     defer></script>
 <script src="scripts/scroll-progress.js" defer></script>
 <script src="scripts/copy-bibtex.js"     defer></script>
 <script src="scripts/main.js"            defer></script>
