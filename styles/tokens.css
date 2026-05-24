@@ -12,15 +12,16 @@
   --border-strong:  #34343C;
   --text-display:   #F4F0E8;
   --text:           #DAD5CA;
-  --text-soft:      #948C7F;
-  --text-muted:     #6E685F;
+  --text-soft:      #ABA08D;
+  --text-muted:     #928879;
   --accent:         #FF6B5A;
   --accent-soft:    rgba(255, 107, 90, 0.16);
   --accent-line:    rgba(255, 107, 90, 0.5);
   --accent-warm:    #D9D2C0;
 
-  /* --- type (outturn-inspired: Oswald condensed display + Cormorant Garamond body) --- */
+  /* --- type (Oswald condensed for HERO title only · Playfair Display for section headings · Cormorant Garamond body) --- */
   --display:        'Oswald', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  --display-serif:  'Playfair Display', 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
   --serif-display:  'Cormorant Garamond', 'Times New Roman', Georgia, serif;
   --serif-body:     'Cormorant Garamond', 'Times New Roman', Georgia, serif;
   --sans:           'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont,

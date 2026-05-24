@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Oswald:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
 
@@ -51,8 +51,8 @@
   <div class="hero__media hero__media--grid" aria-hidden="true">
     <!-- Row 1: each task's mode A -->
     <video autoplay muted loop playsinline preload="metadata"
-           poster="assets/videos/hero_grid/01_pickvege_left.jpg?v=3"
-           src="assets/videos/hero_grid/01_pickvege_left.mp4?v=3"></video>
+           poster="assets/videos/hero_grid/01_pickvege_left.jpg?v=5"
+           src="assets/videos/hero_grid/01_pickvege_left.mp4?v=5"></video>
     <video autoplay muted loop playsinline preload="metadata"
            poster="assets/videos/hero_grid/03_pickcup_modeA.jpg?v=3"
            src="assets/videos/hero_grid/03_pickcup_modeA.mp4?v=3"></video>
@@ -89,7 +89,7 @@
       <a href="https://morpheus-an.github.io/" target="_blank" rel="noopener">Tuo An</a><sup>*</sup>,
       Yuxuan Hu<sup>*</sup>,
       <a href="https://reagan1311.github.io/" target="_blank" rel="noopener">Gen Li</a>,
-      <a href="https://lorenzo-0-0.github.io/" target="_blank" rel="noopener">Jingliang Li</a>,
+      <a href="https://lorenzo-0-0.github.io/" target="_blank" rel="noopener">Jingliang Li</a>,<br />
       <a href="https://hbhalpha.github.io/" target="_blank" rel="noopener">Bohan Hou</a>,
       <a href="https://xyc0212.github.io/" target="_blank" rel="noopener">Xiangyu Chen</a>,
       Jiaqi Bai,
@@ -98,7 +98,7 @@
     </p>
 
     <p class="hero__affil" data-reveal style="--reveal-delay: 480ms">
-      Nanyang Technological University
+      MARS Lab, NTU
     </p>
 
     <p class="hero__marks" data-reveal style="--reveal-delay: 510ms">
@@ -136,44 +136,8 @@
   <div class="container">
     <p class="chapter-num" data-reveal>§ 01 — Idea</p>
 
-    <p class="tldr__line" data-reveal>
-      Inject a proper amount of noise <em>only at the proper time.</em>
-    </p>
-    <p class="tldr__sub" data-reveal style="--reveal-delay: 120ms">
-      MARS turns stochasticity from a fixed burden into an adaptive resource.
-    </p>
-
-    <ul class="stats" role="list">
-      <li class="stat" data-reveal>
-        <div class="stat__value">
-          <span class="stat__num" data-count-to="83.20" data-count-decimals="2">0.00</span><span class="unit">% ↓ latency</span>
-        </div>
-        <p class="stat__label">vs. flow-matching baselines at inference</p>
-      </li>
-      <li class="stat" data-reveal style="--reveal-delay: 120ms">
-        <div class="stat__value">
-          <span class="stat__num" data-count-to="16.67" data-count-decimals="2">0.00</span><span class="unit">% ↑ success</span>
-        </div>
-        <p class="stat__label">average gain on real-world manipulation tasks</p>
-      </li>
-      <li class="stat" data-reveal style="--reveal-delay: 240ms">
-        <div class="stat__value">
-          <span class="stat__num" data-count-to="12" data-count-decimals="0">0</span><span class="unit">tasks tested</span>
-        </div>
-        <p class="stat__label">8 simulated &middot; 4 real-world &middot; Franka &amp; Galaxea R1 Lite</p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- =========================================================
-     PROBLEM (§ 02 — Tension)
-     ========================================================= -->
-<section class="section section--bordered" id="problem">
-  <div class="container">
-    <p class="chapter-num" data-reveal>§ 02 — Tension</p>
     <h2 class="section-title" data-reveal>
-      Generative policies are expressive — but expensive. Deterministic ones are fast — but mode-averaging.
+      Generative policies are expressive — but slow. Deterministic ones are fast — but mode-averaging.
     </h2>
 
     <div class="dilemma">
@@ -196,49 +160,63 @@
         </p>
       </div>
     </div>
+
+    <p class="tldr__line" data-reveal style="margin-block: var(--s-9) var(--s-7)">
+      <span style="color: var(--accent)">MARS:</span> Inject a proper amount of noise <em>only at the proper time.</em>
+    </p>
+
+    <figure class="media-block" data-reveal style="margin-bottom: var(--s-9)">
+      <div class="media-block__chrome">
+        <picture>
+          <source srcset="assets/images/concept.webp" type="image/webp" />
+          <img src="assets/images/concept.png" alt="Concept figure: expert trajectories, generative policy, deterministic policy, MARS policy on a 2D navigation task" />
+        </picture>
+      </div>
+      <div class="media-block__meta">
+        <span class="media-block__label">FIG. 01 · 2D Navigation</span>
+        <span class="media-block__rule"></span>
+        <p class="media-block__caption">
+          A staged 2D navigation task. <strong>(a)</strong> Expert trajectories
+          exhibit two valid paths around the obstacle. <strong>(b)</strong> A
+          generative policy retains both modes but pays a heavy denoising cost
+          everywhere. <strong>(c)</strong> A deterministic policy collapses the
+          two modes into a single, often colliding path. <strong>(d)</strong>
+          MARS keeps multimodality only where it matters — the colour map shows
+          the per-step multimodality degree rising near the branch point and
+          falling to zero elsewhere.
+        </p>
+      </div>
+    </figure>
+
+    <ul class="stats" role="list">
+      <li class="stat" data-reveal>
+        <div class="stat__value">
+          <span class="stat__num" data-count-to="83.20" data-count-decimals="2">0.00</span><span class="unit">% ↓ latency</span>
+        </div>
+        <p class="stat__label">vs. flow-matching at inference</p>
+      </li>
+      <li class="stat" data-reveal style="--reveal-delay: 120ms">
+        <div class="stat__value">
+          <span class="stat__num" data-count-to="16.67" data-count-decimals="2">0.00</span><span class="unit">% ↑ success</span>
+        </div>
+        <p class="stat__label">average gain on real-world manipulation tasks</p>
+      </li>
+      <li class="stat" data-reveal style="--reveal-delay: 240ms">
+        <div class="stat__value">
+          <span class="stat__num" data-count-to="12" data-count-decimals="0">0</span><span class="unit">tasks tested</span>
+        </div>
+        <p class="stat__label">8 simulated &middot; 4 real-world &middot;&nbsp;Franka &amp; Galaxea R1 Lite</p>
+      </li>
+    </ul>
   </div>
 </section>
 
 <!-- =========================================================
-     INSIGHT (§ 03 — concept figure)
-     ========================================================= -->
-<section class="section section--bordered" id="insight">
-  <div class="container">
-    <p class="chapter-num" data-reveal>§ 03 — Insight</p>
-
-    <div class="insight-stack">
-      <figure class="media-block" data-reveal>
-        <div class="media-block__chrome">
-          <picture>
-            <source srcset="assets/images/concept.webp" type="image/webp" />
-            <img src="assets/images/concept.png" alt="Concept figure: expert trajectories, generative policy, deterministic policy, MARS policy on a 2D navigation task" />
-          </picture>
-        </div>
-        <div class="media-block__meta">
-          <span class="media-block__label">FIG. 01 · 2D Navigation</span>
-          <span class="media-block__rule"></span>
-          <p class="media-block__caption">
-            A staged 2D navigation task. <strong>(a)</strong> Expert trajectories
-            exhibit two valid paths around the obstacle. <strong>(b)</strong> A
-            generative policy retains both modes but pays a heavy denoising cost
-            everywhere. <strong>(c)</strong> A deterministic policy collapses the
-            two modes into a single, often colliding path. <strong>(d)</strong>
-            MARS keeps multimodality only where it matters — the colour map shows
-            the per-step multimodality degree rising near the branch point and
-            falling to zero elsewhere.
-          </p>
-        </div>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     REAL-WORLD (§ 04 — experiments open here)
+     REAL-WORLD (§ 02 — experiments open here)
      ========================================================= -->
 <section class="section section--bordered" id="real-world">
   <div class="container">
-    <p class="chapter-num" data-reveal>§ 04 — Real-World</p>
+    <p class="chapter-num" data-reveal>§ 02 — Real-World</p>
     <h2 class="section-title" data-reveal>Four manipulation tasks. Two robots.</h2>
 
     <figure class="media-block" data-reveal style="margin-bottom: var(--s-9)">
@@ -252,11 +230,113 @@
         <span class="media-block__label">FIG. 02 · The four tasks</span>
         <span class="media-block__rule"></span>
         <p class="media-block__caption">
-          Each real-world task admits <strong>two valid modes</strong>. MARS samples
-          both; deterministic baselines collapse to one.
+          Each real-world task admits <strong>two valid modes</strong>.
         </p>
       </div>
     </figure>
+
+    <!-- PICK CUP — MARS vs Flow Matching vs A2A (Galaxea R1 Lite) -->
+    <article class="task" id="task-pickcup" data-reveal>
+      <header class="task__head">
+        <div class="task__lede">
+          <h3 class="task__name">Pick Cup</h3>
+          <p class="task__desc">
+            A coffee mug exposes two equally valid grasps — by the handle or
+            by the rim. MARS samples each grasp in turn.
+          </p>
+        </div>
+        <span class="task__robot">Galaxea R1 Lite</span>
+      </header>
+      <div class="cmp cmp--3">
+        <figure class="cmp__tile cmp__tile--ours" data-mode-tile>
+          <div class="cmp__media">
+            <video src="assets/videos/pickcup/mars.mp4" poster="assets/posters/pickcup_mars.jpg" muted loop playsinline preload="metadata"></video>
+          </div>
+          <figcaption class="cmp__cap">
+            <span class="cmp__label cmp__label--ours">MARS<span class="cmp__ours">ours</span></span>
+            <div class="mode-pick" role="group" aria-label="Choose grasp mode">
+              <button type="button" class="mode-pick__btn is-active" aria-pressed="true" data-src="assets/videos/pickcup/mars.mp4" data-poster="assets/posters/pickcup_mars.jpg">Rim</button>
+              <button type="button" class="mode-pick__btn" aria-pressed="false" data-src="assets/videos/pickcup/mars_02.mp4" data-poster="assets/posters/pickcup_mars_02.jpg">Handle</button>
+            </div>
+            <span class="cmp__note">Click a mode — MARS commits to either grasp from the same start.</span>
+          </figcaption>
+        </figure>
+        <figure class="cmp__tile" data-mode-tile>
+          <div class="cmp__media">
+            <video src="assets/videos/pickcup/fm.mp4" poster="assets/posters/pickcup_fm.jpg" muted loop playsinline preload="metadata"></video>
+          </div>
+          <figcaption class="cmp__cap">
+            <span class="cmp__label">Flow Matching</span>
+            <div class="mode-pick" role="group" aria-label="Choose grasp mode">
+              <button type="button" class="mode-pick__btn is-active" aria-pressed="true" data-src="assets/videos/pickcup/fm.mp4" data-poster="assets/posters/pickcup_fm.jpg">Rim</button>
+              <button type="button" class="mode-pick__btn" aria-pressed="false" data-src="assets/videos/pickcup/fm_02.mp4" data-poster="assets/posters/pickcup_fm_02.jpg">Handle</button>
+            </div>
+            <span class="cmp__note">Generative, but jitterier.</span>
+          </figcaption>
+        </figure>
+        <figure class="cmp__tile">
+          <div class="cmp__media">
+            <video src="assets/videos/pickcup/a2a.mp4" poster="assets/posters/pickcup_a2a.jpg" muted loop playsinline preload="metadata"></video>
+          </div>
+          <figcaption class="cmp__cap">
+            <span class="cmp__label">A2A</span>
+            <span class="cmp__note">Deterministic — commits to a single grasp every rollout.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- PICK VEGETABLE — MARS vs Flow Matching vs A2A (Galaxea R1 Lite) -->
+    <article class="task" id="task-pickvege" data-reveal>
+      <header class="task__head">
+        <div class="task__lede">
+          <h3 class="task__name">Pick Vegetable</h3>
+          <p class="task__desc">
+            Carrot and daikon sit on opposite sides of a mango at every
+            held-out evaluation; either pick is a success. MARS preserves the
+            modal balance.
+          </p>
+        </div>
+        <span class="task__robot">Galaxea R1 Lite</span>
+      </header>
+      <div class="cmp cmp--3">
+        <figure class="cmp__tile cmp__tile--ours" data-mode-tile>
+          <div class="cmp__media">
+            <video src="assets/videos/pickvege/mars.mp4" poster="assets/posters/pickvege_mars.jpg" muted loop playsinline preload="metadata"></video>
+          </div>
+          <figcaption class="cmp__cap">
+            <span class="cmp__label cmp__label--ours">MARS<span class="cmp__ours">ours</span></span>
+            <div class="mode-pick" role="group" aria-label="Choose target">
+              <button type="button" class="mode-pick__btn is-active" aria-pressed="true" data-src="assets/videos/pickvege/mars.mp4" data-poster="assets/posters/pickvege_mars.jpg">Carrot</button>
+              <button type="button" class="mode-pick__btn" aria-pressed="false" data-src="assets/videos/pickvege/mars_right.mp4" data-poster="assets/posters/pickvege_mars_right.jpg">Daikon</button>
+            </div>
+            <span class="cmp__note">Click a mode — MARS commits to either pick, run to run.</span>
+          </figcaption>
+        </figure>
+        <figure class="cmp__tile" data-mode-tile>
+          <div class="cmp__media">
+            <video src="assets/videos/pickvege/fm.mp4" poster="assets/posters/pickvege_fm.jpg" muted loop playsinline preload="metadata"></video>
+          </div>
+          <figcaption class="cmp__cap">
+            <span class="cmp__label">Flow Matching</span>
+            <div class="mode-pick" role="group" aria-label="Choose target">
+              <button type="button" class="mode-pick__btn is-active" aria-pressed="true" data-src="assets/videos/pickvege/fm.mp4" data-poster="assets/posters/pickvege_fm.jpg">Carrot</button>
+              <button type="button" class="mode-pick__btn" aria-pressed="false" data-src="assets/videos/pickvege/fm_02.mp4" data-poster="assets/posters/pickvege_fm_02.jpg">Daikon</button>
+            </div>
+            <span class="cmp__note">Generative, but jitterier.</span>
+          </figcaption>
+        </figure>
+        <figure class="cmp__tile">
+          <div class="cmp__media">
+            <video src="assets/videos/pickvege/a2a.mp4" poster="assets/posters/pickvege_a2a.jpg" muted loop playsinline preload="metadata"></video>
+          </div>
+          <figcaption class="cmp__cap">
+            <span class="cmp__label">A2A</span>
+            <span class="cmp__note">Deterministic — always the same pick.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </article>
 
     <!-- PUSH-T — MARS samples both routes (Franka; no FM/A2A footage available) -->
     <article class="task" id="task-pusht" data-reveal>
@@ -329,104 +409,6 @@
       </div>
     </article>
 
-    <!-- PICK CUP — MARS vs Flow Matching vs A2A (Galaxea R1 Lite) -->
-    <article class="task" id="task-pickcup" data-reveal>
-      <header class="task__head">
-        <div class="task__lede">
-          <h3 class="task__name">Pick Cup</h3>
-          <p class="task__desc">
-            A coffee mug exposes two equally valid grasps — by the handle or
-            by the rim. A deterministic regressor averages them into an
-            in-between pose that catches nothing; MARS samples each grasp in
-            turn.
-          </p>
-        </div>
-        <span class="task__robot">Galaxea R1 Lite</span>
-      </header>
-      <div class="cmp cmp--3">
-        <figure class="cmp__tile cmp__tile--ours" data-mode-tile>
-          <div class="cmp__media">
-            <video src="assets/videos/pickcup/mars.mp4" poster="assets/posters/pickcup_mars.jpg" muted loop playsinline preload="metadata"></video>
-          </div>
-          <figcaption class="cmp__cap">
-            <span class="cmp__label cmp__label--ours">MARS<span class="cmp__ours">ours</span></span>
-            <div class="mode-pick" role="group" aria-label="Choose grasp mode">
-              <button type="button" class="mode-pick__btn is-active" aria-pressed="true" data-src="assets/videos/pickcup/mars.mp4" data-poster="assets/posters/pickcup_mars.jpg">Rim</button>
-              <button type="button" class="mode-pick__btn" aria-pressed="false" data-src="assets/videos/pickcup/mars_02.mp4" data-poster="assets/posters/pickcup_mars_02.jpg">Handle</button>
-            </div>
-            <span class="cmp__note">Click a mode — MARS commits to either grasp from the same start.</span>
-          </figcaption>
-        </figure>
-        <figure class="cmp__tile">
-          <div class="cmp__media">
-            <video src="assets/videos/pickcup/fm.mp4" poster="assets/posters/pickcup_fm.jpg" muted loop playsinline preload="metadata"></video>
-          </div>
-          <figcaption class="cmp__cap">
-            <span class="cmp__label">Flow Matching</span>
-            <span class="cmp__note">Generative, but jitterier; drifts toward one grasp under scarcity.</span>
-          </figcaption>
-        </figure>
-        <figure class="cmp__tile">
-          <div class="cmp__media">
-            <video src="assets/videos/pickcup/a2a.mp4" poster="assets/posters/pickcup_a2a.jpg" muted loop playsinline preload="metadata"></video>
-          </div>
-          <figcaption class="cmp__cap">
-            <span class="cmp__label">A2A</span>
-            <span class="cmp__note">Deterministic — commits to a single grasp every rollout.</span>
-          </figcaption>
-        </figure>
-      </div>
-    </article>
-
-    <!-- PICK VEGETABLE — MARS vs Flow Matching vs A2A (Galaxea R1 Lite) -->
-    <article class="task" id="task-pickvege" data-reveal>
-      <header class="task__head">
-        <div class="task__lede">
-          <h3 class="task__name">Pick Vegetable</h3>
-          <p class="task__desc">
-            Carrot and daikon sit on opposite sides of a mango at every
-            held-out evaluation; either pick is a success. MARS preserves the
-            modal balance even under heavy data scarcity and over-training,
-            where baselines collapse.
-          </p>
-        </div>
-        <span class="task__robot">Galaxea R1 Lite</span>
-      </header>
-      <div class="cmp cmp--3">
-        <figure class="cmp__tile cmp__tile--ours" data-mode-tile>
-          <div class="cmp__media">
-            <video src="assets/videos/pickvege/mars.mp4" poster="assets/posters/pickvege_mars.jpg" muted loop playsinline preload="metadata"></video>
-          </div>
-          <figcaption class="cmp__cap">
-            <span class="cmp__label cmp__label--ours">MARS<span class="cmp__ours">ours</span></span>
-            <div class="mode-pick" role="group" aria-label="Choose target">
-              <button type="button" class="mode-pick__btn is-active" aria-pressed="true" data-src="assets/videos/pickvege/mars.mp4" data-poster="assets/posters/pickvege_mars.jpg">Carrot</button>
-              <button type="button" class="mode-pick__btn" aria-pressed="false" data-src="assets/videos/pickvege/mars_right.mp4" data-poster="assets/posters/pickvege_mars_right.jpg">Daikon</button>
-            </div>
-            <span class="cmp__note">Click a mode — MARS commits to either pick, run to run.</span>
-          </figcaption>
-        </figure>
-        <figure class="cmp__tile">
-          <div class="cmp__media">
-            <video src="assets/videos/pickvege/fm.mp4" poster="assets/posters/pickvege_fm.jpg" muted loop playsinline preload="metadata"></video>
-          </div>
-          <figcaption class="cmp__cap">
-            <span class="cmp__label">Flow Matching</span>
-            <span class="cmp__note">Drifts toward a single vegetable under scarcity / over-training.</span>
-          </figcaption>
-        </figure>
-        <figure class="cmp__tile">
-          <div class="cmp__media">
-            <video src="assets/videos/pickvege/a2a.mp4" poster="assets/posters/pickvege_a2a.jpg" muted loop playsinline preload="metadata"></video>
-          </div>
-          <figcaption class="cmp__cap">
-            <span class="cmp__label">A2A</span>
-            <span class="cmp__note">Deterministic — always the same pick (γ → 0).</span>
-          </figcaption>
-        </figure>
-      </div>
-    </article>
-
     <!-- Real-world summary plot from the paper -->
     <figure class="media-block media-block--compact" style="margin-top: var(--s-9)" data-reveal>
       <div class="media-block__chrome">
@@ -440,11 +422,10 @@
         <span class="media-block__rule"></span>
         <h4 class="media-block__title">Success, modal balance, and latency across all four tasks.</h4>
         <p class="media-block__caption">
-          <strong>(a)</strong> Real-world snapshots across all four tasks.
-          <strong>(b)</strong> Success rate — higher is better.
-          <strong>(c)</strong> Modal balance <em>γ</em> — closer to 1 means both
-          modes are used evenly. <strong>(d)</strong> Per-step inference latency;
-          MARS cuts latency ~83% versus FM-DiT.
+          <strong>(a)</strong> Success rate — higher is better.
+          <strong>(b)</strong> Modal balance <em>γ</em> — closer to 1 means both
+          modes are used evenly. <strong>(c)</strong> Per-step inference latency
+          in Push-T task; MARS cuts latency ~83% versus FM-DiT.
         </p>
       </div>
     </figure>
@@ -452,12 +433,12 @@
 </section>
 
 <!-- =========================================================
-     SIM BENCHMARKS (§ 05 — Simulation Benchmark)
+     SIM BENCHMARKS (§ 03 — Simulation Benchmark)
      ========================================================= -->
 <section class="section section--bordered" id="benchmarks">
   <div class="container">
-    <p class="chapter-num" data-reveal>§ 05 — Simulation Benchmark</p>
-    <h2 class="section-title" data-reveal>Eight environments.</h2>
+    <p class="chapter-num" data-reveal>§ 03 — Simulation Benchmark</p>
+    <h2 class="section-title" data-reveal>Eight tasks, Two environments.</h2>
     <p class="section-lead" data-reveal>
       We separate simulated tasks by whether the demonstrations are
       genuinely multimodal or essentially unimodal. MARS wins both — and on
@@ -525,9 +506,10 @@
         <h4 class="media-block__title">Strategically unimodal tasks.</h4>
         <p class="media-block__caption">
           <strong>(a)</strong> Close Box · RLBench. <strong>(b)</strong> Stack Cube · ManiSkill.
-          <strong>(c)</strong> Pick Cube. <strong>(d)</strong> Close Drawer · LIBERO.
-          When <strong>w → 0</strong> MARS reduces to a fast deterministic predictor,
-          matching A2A on inference cost; the residual diversity loss speeds early convergence.
+          <strong>(c)</strong> Pick Cube · ManiSkill. <strong>(d)</strong> Close Drawer · LIBERO.
+          Even in tasks that appear strategically unimodal yet exhibit nuanced
+          trajectory variations, MARS policy exhibits superior training
+          efficiency over the deterministic one.
         </p>
       </div>
     </figure>
@@ -535,11 +517,11 @@
 </section>
 
 <!-- =========================================================
-     METHOD (§ 06 — moved after benchmarks, above appendix)
+     METHOD (§ 04 — moved after benchmarks, above appendix)
      ========================================================= -->
 <section class="section section--bordered" id="method">
   <div class="container">
-    <p class="chapter-num" data-reveal>§ 06 — Method</p>
+    <p class="chapter-num" data-reveal>§ 04 — Method</p>
     <h2 class="section-title" data-reveal>How MARS works.</h2>
     <p class="section-lead" data-reveal>
       A small <em>modal scheduling network</em> reads the recent action
@@ -606,11 +588,11 @@
 </section>
 
 <!-- =========================================================
-     ADDITIONAL ANALYSIS (§ 07 — appendix figures)
+     ADDITIONAL ANALYSIS (§ 05 — appendix figures)
      ========================================================= -->
 <section class="section section--bordered" id="ablations">
   <div class="container">
-    <p class="chapter-num" data-reveal>§ 07 — Additional Analysis</p>
+    <p class="chapter-num" data-reveal>§ 05 — Additional Analysis</p>
 
     <div class="ablations__grid">
       <figure class="media-block media-block--wide media-block--bleed">
@@ -626,9 +608,7 @@
           <h4 class="media-block__title">Eight policies, one navigation task.</h4>
           <p class="media-block__caption">
             Trajectories from Expert, FM, IBC, BET, A2A, Noised-A2A, VITA,
-            ACT, and MARS on the 2D navigation benchmark. Read left-to-right:
-            the modal coverage shrinks as architecture complexity drops; MARS
-            (rightmost) restores it without the FM cost.
+            ACT, and MARS on the 2D navigation benchmark.
           </p>
         </div>
       </figure>
@@ -645,9 +625,10 @@
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Deterministic regression averages into walls.</h4>
           <p class="media-block__caption">
-            A2A merges the left and right detour into a straight line that
-            collides with the obstacle. No amount of training helps: the
-            failure is built into the architecture.
+            A2A policy on 2D Navigation. A2A occasionally reaches the target by
+            collapsing to a single mode <strong>(a)</strong>, but frequently
+            gets stuck near an obstacle <strong>(b)</strong>. Successful runs
+            are largely attributable to training-time stochasticity.
           </p>
         </div>
       </figure>
@@ -664,10 +645,16 @@
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Adding reconstruction loss kills expressivity.</h4>
           <p class="media-block__caption">
-            Mode distribution over 100 rollouts. Vanilla flow-matching keeps
-            both modes; the moment you add a reconstruction term it
-            collapses to one — the exact pattern the diversity loss is
-            designed to prevent.
+            Reconstruction loss compromises multimodal expressivity. We
+            visualize 100 rollouts of the flow matching policy on 2D
+            Navigation. <strong>(a)</strong> Standard flow matching distributes
+            trajectories across all four valid passages (counts: 20/24/29/24).
+            <strong>(b)</strong> Adding a reconstruction loss with weight
+            <span class="katex-inline" data-katex="\lambda_{\text{rec}}=1"></span>
+            biases the policy toward the two central passages (10/36/40/4),
+            with the outer passages substantially under-explored. This motivates
+            our per-dimension gating strategy that adaptively suppresses the
+            reconstruction penalty based on recognized multimodal degree.
           </p>
         </div>
       </figure>
@@ -684,9 +671,14 @@
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Why pure Gaussian noise is the wrong default.</h4>
           <p class="media-block__caption">
-            Sweeping the initial variance from 0 to 10: success peaks at low
-            variance and degrades as you approach Gaussian-standard. MARS'
-            learned <em>w</em> lives in this low-variance regime by construction.
+            Effect of initial flow variance on optimization and evaluation.
+            Settings: 30 training epochs, 100 demonstrations, and 50 evaluation
+            rollouts. <strong>Left:</strong> Training loss curves under different
+            initial variances (0–10) of the flow source distribution. Larger
+            variance leads to slower and noisier convergence.
+            <strong>Right:</strong> Evaluation success rate under different
+            initial variances, showing that excessively large variance degrades
+            success rate.
           </p>
         </div>
       </figure>
@@ -703,9 +695,13 @@
           <span class="media-block__rule"></span>
           <h4 class="media-block__title">Modal balance under stress.</h4>
           <p class="media-block__caption">
-            Real-world data is scarce and runs are long. Even when training
-            tips into over-fitting or the dataset is sub-sampled, MARS' modal
-            balance <em>γ</em> stays near 0.5 — baselines drift hard.
+            Robustness analysis of modal balance under real-world data scarcity
+            and overtraining (Pick Cup). The default configuration
+            (“Adopted”) consists of 200 demonstrations and 400 training epochs.
+            MARS maintains a resilient and stable modal balance
+            (<em>γ</em> = 0.8) across both data-restricted (50 demonstrations)
+            and overtrained regimes (800 epochs). In contrast, the generative
+            baseline exhibits severe mode degradation.
           </p>
         </div>
       </figure>
@@ -718,7 +714,7 @@
      ========================================================= -->
 <section class="section section--bordered" id="bibtex">
   <div class="container">
-    <p class="chapter-num" data-reveal>§ 08 — Cite</p>
+    <p class="chapter-num" data-reveal>§ 06 — Cite</p>
     <h2 class="section-title" data-reveal>BibTeX</h2>
 
     <div class="bib" data-reveal>
