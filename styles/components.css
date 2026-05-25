@@ -653,9 +653,14 @@ body > * { position: relative; z-index: 1; }
 }
 
 /* ============================================================
-   §01 overview video — cinematic, centred player (title-card poster,
-   native controls, click-to-play; faststart .mp4 so it streams on demand)
+   Overview video — cinematic, centred player shown between the hero and § 01
+   (title-card poster, native controls, click-to-play; faststart .mp4 streams
+   on demand). The standalone section owns the top gap from the hero; § 01's
+   own top padding provides the gap below.
    ============================================================ */
+.overview-section { padding-block: var(--section-gap) 0; }
+.overview-section .overview { margin-block: 0; }
+
 .overview {
   max-width: 1080px;
   margin: var(--s-8) auto var(--s-9);
