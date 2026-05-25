@@ -293,6 +293,8 @@ body > * { position: relative; z-index: 1; }
 
 .hero__marks span { margin: 0 var(--s-3); }
 .hero__marks sup { color: var(--accent); margin-right: 2px; }
+/* The ★ glyph reads larger than the * / † marks at the same size — scale it down to match */
+.mark-star { font-size: 0.68em; }
 
 /* === Hero logos row (NTU + MARS Lab) ==================================== */
 .hero__logos {
