@@ -275,19 +275,9 @@ body > * { position: relative; z-index: 1; }
 }
 
 .hero__marks span { margin: 0 var(--s-3); white-space: nowrap; }
+/* Project-lead mark is the native double-dagger ‡ (U+2021) — a real footnote glyph,
+   so it shares the exact metrics / superscript baseline of * and †. No custom sizing. */
 .hero__marks sup { color: var(--accent); margin-right: 2px; }
-/* Project-lead mark = inline SVG star. A text ★ (U+2605) is baseline-centered and
-   never lines up with the high *, † footnote glyphs; an SVG's box IS its ink, so its
-   size and baseline are exact. Sized a touch under 1em (a filled star reads heavier
-   than a thin asterisk) and nudged onto the * / † superscript line. */
-.mark-star {
-  display: inline-block;
-  width: 0.82em;
-  height: 0.82em;
-  vertical-align: 0.05em;
-  fill: currentColor;
-  margin: 0 1px;
-}
 
 /* === Hero logos row (NTU + MARS Lab) ==================================== */
 .hero__logos {
