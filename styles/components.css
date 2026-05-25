@@ -694,26 +694,9 @@ body > * { position: relative; z-index: 1; }
   background: #000;
 }
 
-.overview__caption {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s-2) var(--s-3);
-  margin-top: var(--s-4);
-  font-family: var(--mono);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
-  color: var(--text-muted);
-}
-
-.overview__label { color: var(--accent); text-transform: uppercase; white-space: nowrap; }
-.overview__sep { width: 28px; height: 1px; background: var(--border-strong); flex: none; }
-
 @media (max-width: 720px) {
   .overview { margin: var(--s-6) auto var(--s-7); }
   .overview__frame { border-radius: var(--r-lg); }
-  .overview__sep { display: none; }
 }
 
 /* ============================================================
