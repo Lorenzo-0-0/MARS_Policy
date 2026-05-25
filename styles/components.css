@@ -559,11 +559,12 @@ body > * { position: relative; z-index: 1; }
   font-family: var(--display-serif);
   font-weight: 500;
   font-size: clamp(30px, 3.6vw, 50px);
-  line-height: 1.16;
-  letter-spacing: -0.005em;
-  margin-bottom: var(--s-6);
-  max-width: 24ch;
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+  margin-bottom: var(--s-7);
+  max-width: 38ch;
   color: var(--text-display);
+  text-wrap: balance;
 }
 
 .section-lead {
@@ -603,9 +604,9 @@ body > * { position: relative; z-index: 1; }
 .dilemma__col h3 {
   font-family: var(--serif-display);
   font-weight: 400;
-  font-size: clamp(24px, 2.8vw, 36px);
+  font-size: clamp(22px, 2.3vw, 30px);
   line-height: 1.2;
-  margin-bottom: var(--s-4);
+  margin-bottom: var(--s-5);
   color: var(--text-display);
 }
 
