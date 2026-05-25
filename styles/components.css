@@ -187,7 +187,7 @@ body > * { position: relative; z-index: 1; }
 }
 
 /* Mobile hero overrides live at the END of this hero section (after the base
-   rules) so they win on source order — see the @media block below .hero__scroll. */
+   rules) so they win on source order — see the @media block further down. */
 
 .hero__inner {
   text-align: center;
@@ -409,37 +409,6 @@ body > * { position: relative; z-index: 1; }
   stroke-width: 1.5;
 }
 
-.hero__scroll {
-  position: absolute;
-  bottom: var(--s-6);
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--mono);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--text-muted);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--s-2);
-  z-index: 2;
-}
-
-.hero__scroll::after {
-  content: "";
-  display: block;
-  width: 1px; height: 40px;
-  background: linear-gradient(to bottom, var(--text-muted), transparent);
-  animation: scrollPulse 2.4s var(--ease) infinite;
-}
-
-@keyframes scrollPulse {
-  0% { transform: scaleY(0.3); transform-origin: top; opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
-}
-
 @media (max-width: 720px) {
   /* Mobile hero — compact stacked layout. The video banner sits BELOW the nav
      (the desktop overlay let the transparent nav float over the bright clips), is
@@ -468,7 +437,6 @@ body > * { position: relative; z-index: 1; }
   .hero__affil,
   .hero__marks { font-size: var(--text-xs); }
   .hero__marks span { margin: 0 var(--s-2); }
-  .hero__scroll { display: none; }
 }
 
 /* ============================================================
