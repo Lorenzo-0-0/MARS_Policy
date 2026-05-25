@@ -187,10 +187,23 @@ body > * { position: relative; z-index: 1; }
 }
 
 @media (max-width: 720px) {
+  /* Mobile hero — stacked: an uncropped 16:9 video banner on top, content below
+     on the solid page bg (instead of the desktop full-viewport overlay, which
+     cropped the landscape clips into portrait slivers and buried them under text). */
+  .section--hero { min-height: 0; display: block; }
+  .hero__media { position: relative; inset: auto; height: auto; z-index: 0; }
+  .hero__media::after { display: none; }
   .hero__media--grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: none;
+    gap: 6px;
   }
+  .hero__media--grid > video { aspect-ratio: 16 / 9; height: auto; opacity: 0.95; }
+  .hero__inner { padding-block: var(--s-7) var(--s-8); }
+  .hero__authors { font-size: var(--text-sm); }
+  .hero__affil,
+  .hero__marks { font-size: var(--text-xs); }
+  .hero__scroll { display: none; }
 }
 
 .hero__inner {
