@@ -663,6 +663,65 @@ body > * { position: relative; z-index: 1; }
 }
 
 /* ============================================================
+   §01 overview video — cinematic, centred player (title-card poster,
+   native controls, click-to-play; faststart .mp4 so it streams on demand)
+   ============================================================ */
+.overview {
+  max-width: 1080px;
+  margin: var(--s-8) auto var(--s-9);
+}
+
+.overview__frame {
+  position: relative;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: #000;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 1px var(--border),
+    0 40px 90px -42px rgba(0, 0, 0, 0.92);
+  transition: box-shadow var(--d-base) var(--ease), transform var(--d-base) var(--ease);
+}
+
+.overview__frame:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px var(--border-strong),
+    0 52px 110px -42px rgba(0, 0, 0, 0.95),
+    0 0 70px -24px var(--accent-soft);
+}
+
+.overview__video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.overview__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2) var(--s-3);
+  margin-top: var(--s-4);
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+}
+
+.overview__label { color: var(--accent); text-transform: uppercase; white-space: nowrap; }
+.overview__sep { width: 28px; height: 1px; background: var(--border-strong); flex: none; }
+
+@media (max-width: 720px) {
+  .overview { margin: var(--s-6) auto var(--s-7); }
+  .overview__frame { border-radius: var(--r-lg); }
+  .overview__sep { display: none; }
+}
+
+/* ============================================================
    Insight (v8 — vertical stack: figure → centered quote → caption)
    ============================================================ */
 .insight-stack {
