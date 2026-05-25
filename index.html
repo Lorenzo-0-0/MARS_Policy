@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="dark" />
   <meta name="theme-color" content="#0F0F11" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
   <title>MARS Policy</title>
   <meta name="description" content="MARS injects a proper amount of stochastic noise only at the proper time — a modal-adaptive robot sampling policy that is multimodal when it matters and fast otherwise." />
@@ -34,7 +35,7 @@
   <div class="nav__inner">
     <a href="#top" class="nav__brand"><span class="nav__brand-icon" aria-hidden="true"></span>MARS Policy</a>
     <div class="nav__links">
-      <a class="nav__link" href="#abstract">Idea</a>
+      <a class="nav__link" href="#abstract">Motivation</a>
       <a class="nav__link" href="#real-world">Real-World</a>
       <a class="nav__link" href="#benchmarks">Benchmarks</a>
       <a class="nav__link" href="#method">Method</a>
@@ -108,7 +109,7 @@
     </p>
 
     <div class="hero__cta-row" data-reveal style="--reveal-delay: 540ms">
-      <a class="btn btn--primary" href="#paper" data-placeholder="paper-pdf">
+      <a class="btn" href="#paper" data-placeholder="paper-pdf">
         <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v5h5M6 3h8l5 5v13H6V3z"/></svg>
         Paper
       </a>
@@ -135,7 +136,7 @@
      ========================================================= -->
 <section class="section tldr" id="abstract">
   <div class="container">
-    <p class="chapter-num" data-reveal>§ 01 — Idea</p>
+    <p class="chapter-num" data-reveal>§ 01 — Motivation</p>
 
     <h2 class="section-title" data-reveal>
       Generative policies are expressive — but slow. Deterministic ones are fast — but mode-averaging.
@@ -177,7 +178,7 @@
         <span class="media-block__label">FIG. 01 · 2D Navigation</span>
         <span class="media-block__rule"></span>
         <p class="media-block__caption">
-          A staged 2D navigation task. <strong>(a)</strong> Expert trajectories
+          An illustrative 2D navigation task. <strong>(a)</strong> Expert trajectories
           exhibit two valid paths around the obstacle. <strong>(b)</strong> A
           generative policy retains both modes but pays a heavy denoising cost
           everywhere. <strong>(c)</strong> A deterministic policy collapses the
@@ -343,7 +344,7 @@
     <article class="task" id="task-pusht" data-reveal>
       <header class="task__head">
         <div class="task__lede">
-          <h3 class="task__name">Push-T</h3>
+          <h3 class="task__name">Push<span class="flat-hyphen">-</span>T</h3>
           <p class="task__desc">
             From a fixed start pose, the T-shaped block can be aligned by
             going <em>around</em> it from either side. MARS samples a
@@ -351,7 +352,7 @@
             the target.
           </p>
         </div>
-        <span class="task__robot">Franka · MARS</span>
+        <span class="task__robot">Franka</span>
       </header>
       <div class="cmp cmp--2">
         <figure class="cmp__tile cmp__tile--ours">
@@ -386,7 +387,7 @@
             that <em>preserves</em> modal balance can land in each.
           </p>
         </div>
-        <span class="task__robot">Franka · MARS</span>
+        <span class="task__robot">Franka</span>
       </header>
       <div class="cmp cmp--2">
         <figure class="cmp__tile cmp__tile--ours">
